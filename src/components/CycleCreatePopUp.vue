@@ -41,7 +41,7 @@ export default {
             await axios.post("http://127.0.0.1:8000/api/cycles/", {
                 name: this.name, tasks: this.tasks,
                 time_start: this.date.start, time_finish: this.date.finish,
-                coach: "alex", client: this.clientId,
+                client: this.clientId,
             })
             .then((resp) => {
 

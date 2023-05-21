@@ -1,10 +1,9 @@
 <template>
-  <menu-block/>
-  <div>
-  </div>
+  <div class="logo"><img src="@/assets/pngwing.com.png" alt="" /></div>
+  <main-menu />
+  <header></header>
   <div class="content">
-    <authorization-pop-up/>
-    <router-view style="padding-top: 100px;" v-slot="{Component}">
+    <router-view v-slot="{ Component }">
       <transition name="router" mode="out-in">
         <component :is="Component"></component>
       </transition>
@@ -14,48 +13,41 @@
 
 <script>
 import axios from "axios";
-import router from "@/router";
-import MenuBlock from "./components/MenuBlock.vue";
-import AuthorizationPopUp from "./components/AuthorizationPopUp.vue";
+import MainMenu from "@/fsdcomponent/widgets/Landing/MainMenu.vue";
 export default {
   beforeCreate() {
-    this.$store.commit('auth/initStorage')
+    this.$store.commit("auth/initStorage");
     let token = this.$store.state.auth.token;
 
-    
-
     if (token) {
-      axios.defaults.headers.common['Authorization'] = token
+      axios.defaults.headers.common["Authorization"] = token;
     }
-    this.$store.dispatch('userInfo/fetchProfileInfo', "GOVNO")
-    this.$store.dispatch('userInfo/fetchClients')
-    
-
+    this.$store.dispatch("userInfo/fetchProfileInfo", "GOVNO");
+    this.$store.dispatch("userInfo/fetchClients");
   },
 
   components: {
-    AuthorizationPopUp, MenuBlock
+    MainMenu,
   },
-  computed: {
-
-  },
-}
+  computed: {},
+};
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  // font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #20252b;
-  font-family: 'Carlito', sans-serif;
+  color: #eae3da;
+  font-family: "Carlito", sans-serif;
   background: #ffffff;
-  // margin-top: 84px;
 }
-::-webkit-scrollbar{
-    display: none;
-  }
+::-webkit-scrollbar {
+  display: none;
+}
+// @import "@/fsdcomponent/shared/styles/mixins.scss";
 
 * {
   margin: 0;
@@ -64,17 +56,34 @@ export default {
   // background: #2a2f35;
 }
 
-html, body {
+html,
+body {
+  font-family: "Bebas Neue", sans-serif;
   overflow-x: hidden;
   scrollbar-width: none;
   height: fit-content;
+  // background: #20252b;
+}
+header {
+  display: flex;
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  z-index: 0;
+  background: rgb(37, 40, 44);
 }
 body {
-  position: relative;
+  // position: relative;
+  background: #20252b;
+  // @include flex-centered;
 }
 a {
   text-decoration: none;
   color: aliceblue;
+}
+
+h1 {
+  // font-family: "Bebas Neue", sans-serif;
 }
 
 nav {
@@ -89,8 +98,6 @@ nav {
     }
   }
 }
-
-
 #menu {
   left: 10px;
   top: 10px;
@@ -101,15 +108,67 @@ nav {
   cursor: pointer;
   scale: 1.01;
 }
+.logo {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  width: min-content;
+  height: min-content;
+  height: 70px;
+  align-items: center;
+}
+.logo img {
+  width: 60px;
+  height: 60px;
+}
+
+.content {
+  background: #20252b;
+  padding-top: 100px;
+}
+textarea.textarea {
+  resize: none;
+  background: none;
+  outline: none;
+  border: none;
+}
+.text-input-container {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+}
+.text-input[type="text"] {
+  background: none;
+  outline: none;
+  border: none;
+}
+.num-input[type="number"] {
+  text-align: right;
+}
+.num-input[type="number"]:disabled {
+  color: currentColor;
+  background: none;
+  outline: none;
+  border: none;
+  appearance: textfield;
+  -moz-appearance: textfield;
+  font-size: medium;
+}
+
+.num-input[type="number"]:disabled::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .menu-enter-from,
 .menu-leave-to {
-    opacity: 0;
-    transform: translateX(-100%);
+  opacity: 0;
+  transform: translateX(-100%);
 }
 
 .menu-leave-active,
 .menu-enter-active {
-    transition: 0.5s ease;
+  transition: 0.5s ease;
 }
 .router-enter-from {
   transform: translateX(-30%);
@@ -122,6 +181,6 @@ nav {
 
 .router-leave-active,
 .router-enter-active {
-    transition: 0.25s ease-in;
+  transition: 0.25s ease-in;
 }
 </style>

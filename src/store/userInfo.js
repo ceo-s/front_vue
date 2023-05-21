@@ -33,7 +33,7 @@ export const userInfo = {
                 .catch(ex => console.log(ex))
         },
         async fetchClients({ commit }) {
-            await axios.get("http://127.0.0.1:8000/api/clients/my_clients/")
+            await axios.get("http://127.0.0.1:8000/api/clients/filter/")
                 .then((resp) => {
                     commit('setClients', resp.data)
                 })

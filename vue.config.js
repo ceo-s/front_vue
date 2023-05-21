@@ -1,4 +1,4 @@
-const { defineConfig } = require('@vue/cli-service')
+const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
   transpileDependencies: true,
   // devServer: {
@@ -8,5 +8,11 @@ module.exports = defineConfig({
   //   https: true,
   //   // hotOnly: false,
   // },
-
-})
+  css: {
+    loaderOptions: {
+      sass: {
+        additionalData: `@import "@/fsdcomponent/shared/styles/mixins.scss";`,
+      },
+    },
+  },
+});
