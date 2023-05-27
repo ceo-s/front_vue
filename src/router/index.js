@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "@/fsdcomponent/pages/HomeView.vue";
-import ProfileView from "@/fsdcomponent/pages/ProfileView.vue";
-import ExercisesView from "@/fsdcomponent/pages/ExercisesView.vue";
-import ProgramView from "@/fsdcomponent/pages/TrainingProgramView.vue";
-import DietView from "@/fsdcomponent/pages/DietView.vue";
-import ClientsView from "@/fsdcomponent/pages/ClientsView.vue";
-import ClientCabinetView from "@/fsdcomponent/pages/ClientCabinetView.vue";
+import HomeView from "@/components/pages/HomeView.vue";
+import ProfileView from "@/components/pages/ProfileView.vue";
+import ExercisesView from "@/components/pages/ExercisesView.vue";
+import ProgramView from "@/components/pages/TrainingProgramView.vue";
+import DietView from "@/components/pages/DietView.vue";
+import ClientsView from "@/components/pages/ClientsView.vue";
+import ClientCabinetView from "@/components/pages/ClientCabinetView.vue";
 
 const routes = [
   {

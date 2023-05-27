@@ -11,7 +11,7 @@ module.exports = defineConfig({
   css: {
     loaderOptions: {
       sass: {
-        additionalData: `@import "@/fsdcomponent/shared/styles/mixins.scss";`,
+        additionalData: `@import "@/components/shared/styles/mixins.scss";`,
       },
     },
   },

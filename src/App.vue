@@ -12,18 +12,11 @@
 </template>
 
 <script>
-import axios from "axios";
-import MainMenu from "@/fsdcomponent/widgets/Landing/MainMenu.vue";
+import MainMenu from "@/components/widgets/Landing/MainMenu.vue";
 export default {
   beforeCreate() {
     this.$store.commit("auth/initStorage");
-    let token = this.$store.state.auth.token;
-
-    if (token) {
-      axios.defaults.headers.common["Authorization"] = token;
-    }
-    this.$store.dispatch("userInfo/fetchProfileInfo", "GOVNO");
-    this.$store.dispatch("userInfo/fetchClients");
+    this.$store.dispatch("userInfo/fetchProfileInfo");
   },
 
   components: {
@@ -47,7 +40,7 @@ export default {
 ::-webkit-scrollbar {
   display: none;
 }
-// @import "@/fsdcomponent/shared/styles/mixins.scss";
+// @import "@/components/shared/styles/mixins.scss";
 
 * {
   margin: 0;

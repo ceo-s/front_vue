@@ -1,5 +1,5 @@
 import { debounce } from "./Debounce";
-import api from "@/fsdcomponent/shared/api/ky";
+import api from "@/components/shared/api/ky";
 
 async function search(cb, value, link, queryParams) {
   let params = queryParams.length
@@ -9,8 +9,6 @@ async function search(cb, value, link, queryParams) {
         })
       )
     : {};
-
-  //   const resp = (await axios.get(link, { params: params })).data;
   const resp = api.get(link, { searchParams: params }).json();
   await cb(resp);
 }

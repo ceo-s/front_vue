@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  vue:
+    container_name: front_vue
+    build: .
+    volumes:
+      - ".:app"
+      - "/app/node_modules"
+    ports:
+      - "8080:8080"
+    
+  
+volumes:
+  pg_volume:

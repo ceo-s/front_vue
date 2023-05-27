@@ -1,53 +1,23 @@
-import axios from "axios";
+import { getUser } from "@/components/entities/Coach/api/Get";
 export const userInfo = {
-    state() {
-      return {
-        profileInfo: {},
-        clients: [],
-        cycles: [],
-      }
+  state() {
+    return {
+      profileInfo: {},
+      clients: [],
+      cycles: [],
+    };
+  },
+  getters: {},
+  mutations: {
+    setProfileInfo(state, info) {
+      state.profileInfo = info;
     },
-    getters: {
-      
+  },
+  actions: {
+    async fetchProfileInfo({ commit }) {
+      commit("setProfileInfo", await getUser());
     },
-    mutations: {
-        setProfileInfo(state, info) {
-            state.profileInfo = info;
-        },
-        setClients(state, clientsList) {
-            state.clients = clientsList;
-        },
-        appendClient(state, client) {
-            state.clients.push(client)
-        },
-        setCycles(state, cyclesList) {
-            state.cycles = cyclesList;
-        },
-    },
-    actions: {
-        async fetchProfileInfo({ commit }) {
-            await axios.get("http://127.0.0.1:8000/api/profiles/my_profile/")
-                .then((resp) => {
-                    commit('setProfileInfo', resp.data)
-                })
-                .catch(ex => console.log(ex))
-        },
-        async fetchClients({ commit }) {
-            await axios.get("http://127.0.0.1:8000/api/clients/filter/")
-                .then((resp) => {
-                    commit('setClients', resp.data)
-                })
-                .catch((ex) => console.log(ex))
-        },
-        // async fetchCycles() {
-        //     await axios.get('http://127.0.0.1:8000/api/cycles/')
-        //         .then((resp) => {
-
-        //         })
-        //         .catch((ex) => console.log(ex))
-        // },
-    },
-    modules: {
-    },
-    namespaced: true,
-  }
+  },
+  modules: {},
+  namespaced: true,
+};

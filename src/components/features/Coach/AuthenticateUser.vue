@@ -1,0 +1,86 @@
+<template>
+  <div>
+    <new-menu-button @click="log">Авторизироваться</new-menu-button>
+    <new-pop-up v-model:visible="popUpVisible">
+      <div class="form">
+        <div class="buttons">
+          <button
+            class="button"
+            :class="{ active: currentOption === 'CoachAuthorization' }"
+            @click="
+              currentOption = 'CoachAuthorization';
+              direction2 = '100px';
+            "
+          >
+            Authorization
+          </button>
+          <button
+            class="button"
+            :class="{ active: currentOption === 'CoachRegistration' }"
+            @click="
+              currentOption = 'CoachRegistration';
+              direction2 = '-100px';
+            "
+          >
+            Registration
+          </button>
+        </div>
+        <transition mode="out-in" name="option">
+          <component :is="currentOption"></component>
+        </transition>
+      </div>
+    </new-pop-up>
+  </div>
+</template>
+
+<script>
+import CoachAuthorization from "@/components/entities/Coach/ui/CoachAuthorization.vue";
+import CoachRegistration from "@/components/entities/Coach/ui/CoachRegistration.vue";
+export default {
+  components: {
+    CoachAuthorization,
+    CoachRegistration,
+  },
+  data() {
+    return {
+      popUpVisible: false,
+      currentOption: "CoachAuthorization",
+    };
+  },
+  methods: {
+    log(ev) {
+      this.popUpVisible = true;
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.form {
+  height: 350px;
+  transition: 2s;
+  width: 300px;
+  overflow: hidden;
+}
+.buttons {
+  display: flex;
+  width: 100%;
+}
+.button {
+  flex-grow: 1;
+  opacity: 0.5;
+  height: 40px;
+  cursor: pointer;
+}
+.active {
+  opacity: 1;
+}
+.option-leave-to,
+.option-enter-from {
+  opacity: 0;
+}
+.option-enter-active,
+.option-leave-active {
+  transition: 300ms ease-in-out;
+}
+</style>
