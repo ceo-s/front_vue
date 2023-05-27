@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     programId() {
-      return this.$store.state.dietProgram.programId;
+      return this.$store.state.programs.dietProgramId;
     },
   },
 };

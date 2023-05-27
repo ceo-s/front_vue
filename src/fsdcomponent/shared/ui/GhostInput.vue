@@ -1,6 +1,7 @@
 <template>
   <div>
     <input
+      :value="modelValue"
       @input="updateModelValue"
       class="ghost-input"
       :placeholder="placeholder"
@@ -26,11 +27,11 @@ export default {
 <style lang="scss" scoped>
 .ghost-input {
   color: #c0c2ca;
-  height: 30px;
   background: none;
   border-radius: 10px;
   box-shadow: none;
   border: none;
+  height: 100%;
   width: 100%;
 }
 .ghost-input::placeholder {

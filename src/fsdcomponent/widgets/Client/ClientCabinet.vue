@@ -1,5 +1,6 @@
 <template>
   <div class="cabinet">
+    <arrow-icon @click="$router.back" />
     <client-demo :client="client" />
     <client-stats :clientStats="clientStats" />
     <base-exercises :exercises="baseExercises.exercises" />
@@ -54,5 +55,6 @@ export default {
   border-radius: 40px;
   margin: auto;
   display: flex;
+  flex-direction: column;
 }
 </style>

@@ -22,6 +22,10 @@ export default {
       type: Number,
       default: () => 1,
     },
+    color: {
+      type: String,
+      default: () => "#000",
+    },
   },
 };
 </script>
@@ -29,6 +33,7 @@ export default {
 <style lang="scss" scoped>
 .trash {
   width: calc(16px * v-bind(size));
+  fill: v-bind(color);
   cursor: pointer;
 }
 </style>

@@ -3,7 +3,12 @@
     <manage-nutrients :nutrientsList="nutrientsList" />
     <!-- <ChangeDayRef class="settings" v-model="updating" /> -->
     <h1>БЖУ</h1>
-    <div @click="scheduleVisible = !scheduleVisible">Открыть схему приёма</div>
+    <div
+      v-if="nutrientsList.length"
+      @click="scheduleVisible = !scheduleVisible"
+    >
+      Открыть схему приёма
+    </div>
     <div v-if="scheduleVisible" class="scheme">
       <div ref="schedule" @wheel.prevent="horizontalScroll" class="schedule">
         <div :key="day.day_type" v-for="day in schedule">
@@ -19,6 +24,7 @@
           @update:schedule="
             (schedule) => this.$emit('update:schedule', schedule)
           "
+          :nutrientsList="nutrientsList"
           :schedule="schedule"
         />
       </div>
@@ -32,7 +38,11 @@
       :direction="'row'"
       :arrowSize="0.6"
     >
-      <daily-nutrients :updating="updating" :dailyNutrients="currenNutrients" />
+      <daily-nutrients
+        v-if="currenNutrients"
+        :updating="updating"
+        :dailyNutrients="currenNutrients"
+      />
     </default-carousel>
   </div>
 </template>

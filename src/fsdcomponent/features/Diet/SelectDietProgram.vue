@@ -2,18 +2,20 @@
   <div>
     <default-button
       @click="visible = true"
-      :disabled="Boolean(!this.$store.state.programs.clientId)"
+      :disabled="Boolean(!$store.state.programs.clientId)"
       >Программы</default-button
     >
     <new-pop-up v-model:visible="visible">
       <div class="container">
-        <training-program-demo
+        <div
           @click="selectProgram(program.id)"
-          class="option"
-          :programInfo="program"
           :key="program.id"
           v-for="program in programs"
-        />
+          class="option"
+        >
+          <h2>{{ program.name }}</h2>
+          <h3>{{ program.date_start }} - {{ program.date_finish }}</h3>
+        </div>
       </div>
       <add-program @update:program="(program) => programs.push(program)" />
     </new-pop-up>
@@ -21,12 +23,10 @@
 </template>
 
 <script>
-import { listClientPrograms } from "@/fsdcomponent/entities/TrainingProgram/api/List";
-import TrainingProgramDemo from "@/fsdcomponent/entities/TrainingProgram/ui/TrainingProgramDemo.vue";
-import AddProgram from "./AddProgram.vue";
+import { listClientPrograms } from "@/fsdcomponent/entities/Diet/api/List";
+import AddProgram from "@/fsdcomponent/features/Diet/AddProgram.vue";
 export default {
   components: {
-    TrainingProgramDemo,
     AddProgram,
   },
   data() {
@@ -42,9 +42,8 @@ export default {
       );
     },
     selectProgram(id) {
-      this.visible = false;
       console.log("program selected", id);
-      this.$store.commit("programs/setTrainingProgramId", id);
+      this.$store.commit("programs/setDietProgramId", id);
     },
   },
   watch: {

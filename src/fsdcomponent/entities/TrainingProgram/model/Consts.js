@@ -22,6 +22,16 @@ export const programDay = (date, programId) => {
   };
 };
 
+export const weekdays = [
+  "Понедельник",
+  "Вторник",
+  "Среда",
+  "Четверг",
+  "Пятница",
+  "Суббота",
+  "Воскресенье",
+];
+
 export const trainingWeek = (programId, dateStart) => {
   const week = [];
   let date = dateStart;

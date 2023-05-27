@@ -6,8 +6,10 @@
 </template>
 
 <script>
+import { scheduleDay } from "@/fsdcomponent/entities/Diet/model/Consts";
 export default {
   props: {
+    nutrientsList: { Array },
     schedule: { Object },
   },
   methods: {
@@ -27,7 +29,13 @@ export default {
         day.count++;
         this.schedule.push(day);
       } else {
-        // this.schedule.push({ count: 1 , day_type: });
+        this.schedule.push(
+          scheduleDay(
+            1,
+            this.$store.state.programs.dietProgramId,
+            this.nutrientsList[0].id
+          )
+        );
       }
     },
     popDay() {

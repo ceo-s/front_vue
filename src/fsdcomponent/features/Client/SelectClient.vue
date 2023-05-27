@@ -2,15 +2,17 @@
   <div>
     <default-button @click="this.visible = true">Select client</default-button>
     <new-pop-up v-model:visible="visible">
-      <div class="container">
+      <div v-if="clients.length" class="container">
         <div>
-          <client-demo
-            @click="selectClient(client.id)"
+          <div
+            @click="selectClient(client)"
+            class="option"
             :key="client.id"
             v-for="client in clients"
-            class="option"
-            :clinet="client"
-          />
+          >
+            <h2>{{ client.name }}</h2>
+            <h3>{{ client.telegram }}</h3>
+          </div>
         </div>
       </div>
     </new-pop-up>
@@ -19,11 +21,7 @@
 
 <script>
 import { listClients } from "@/fsdcomponent/entities/Client/api/List";
-import ClientDemo from "@/fsdcomponent/entities/Client/ui/ClientDemo.vue";
 export default {
-  components: {
-    ClientDemo,
-  },
   mounted() {
     this.fetchClients();
   },
@@ -37,9 +35,11 @@ export default {
     async fetchClients() {
       this.clients = await listClients();
     },
-    selectClient(id) {
-      console.log("client selected", id);
-      this.$store.commit("trainingProgram/setClientId", id);
+    selectClient(client) {
+      console.log("client selected", client.id);
+      this.visible = false;
+      this.$store.commit("programs/setClientId", client.id);
+      this.$store.commit("programs/setClient", client);
     },
   },
 };
@@ -52,8 +52,9 @@ export default {
   width: 300px;
 }
 .option {
-  height: 50px;
+  height: fit-content;
   margin: 2px;
+  padding: 4px;
   background: #444;
   cursor: pointer;
 }

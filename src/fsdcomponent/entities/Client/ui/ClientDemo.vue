@@ -16,14 +16,6 @@ export default {
   props: {
     client: {
       type: Object,
-      default() {
-        return {
-          id: 1,
-          name: "Alex",
-          telegram: "alex",
-          description: "Cool guy",
-        };
-      },
     },
     extended: { Boolean },
   },
@@ -35,7 +27,7 @@ export default {
   methods: {
     openClientPage() {
       console.log("wth");
-      this.$router.push(`clients2/${this.client.id}`);
+      this.$router.push(`clients/${this.client.id}`);
     },
   },
   computed: {

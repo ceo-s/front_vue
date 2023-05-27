@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import { dailyNutrients } from "@/fsdcomponent/entities/Diet/model/Consts";
 export default {
   props: {
     nutrientsList: { Object },
@@ -22,18 +23,13 @@ export default {
       //   })
       // );
       if (this.nutrientsList.length) {
-        this.nutrientsList.push({
-          name: "Somename",
-          water: 0,
-          proteins: 0,
-          fats: 0,
-          carbohydrates: 0,
-          calories: 0,
-          // TODO надо бы сюда диет програм живой сделать
-          diet_program: 1,
-        });
+        this.nutrientsList.push(
+          dailyNutrients(this.$store.state.programs.dietProgramId)
+        );
       } else {
-        // this.nutrientsList.push({ count: 1 , day_type: });
+        this.nutrientsList.push(
+          dailyNutrients(this.$store.state.programs.dietProgramId)
+        );
       }
     },
     popNutrients() {

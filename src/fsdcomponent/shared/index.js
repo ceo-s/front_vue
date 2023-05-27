@@ -18,6 +18,7 @@ import PencilIcon from "@/fsdcomponent/shared/ui/PencilIcon.vue";
 import DefaultSelect from "@/fsdcomponent/shared/ui/DefaultSelect.vue";
 import DefaultSearch from "@/fsdcomponent/shared/ui/DefaultSearch.vue";
 import SearchHints from "@/fsdcomponent/shared/ui/SearchHints.vue";
+import PlusMinus from "@/fsdcomponent/shared/ui/PlusMinus.vue";
 
 export default [
   AdaptiveList,
@@ -40,4 +41,5 @@ export default [
   DefaultSelect,
   DefaultSearch,
   SearchHints,
+  PlusMinus,
 ];

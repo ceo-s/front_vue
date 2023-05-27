@@ -4,20 +4,26 @@
     <new-pop-up v-model:visible="popUpVisible">
       <div class="form">
         <div class="buttons">
-          <default-button
+          <button
+            class="button"
+            :class="{ active: currentOption === 'CoachAuthorization' }"
             @click="
               currentOption = 'CoachAuthorization';
               direction2 = '100px';
             "
-            >Authorization</default-button
           >
-          <default-button
+            Authorization
+          </button>
+          <button
+            class="button"
+            :class="{ active: currentOption === 'CoachRegistration' }"
             @click="
               currentOption = 'CoachRegistration';
               direction2 = '-100px';
             "
-            >Registration</default-button
           >
+            Registration
+          </button>
         </div>
         <transition mode="out-in" name="option">
           <component :is="currentOption"></component>
@@ -43,7 +49,6 @@ export default {
   },
   methods: {
     log(ev) {
-      console.log("suke", ev);
       this.popUpVisible = true;
     },
   },
@@ -59,6 +64,16 @@ export default {
 }
 .buttons {
   display: flex;
+  width: 100%;
+}
+.button {
+  flex-grow: 1;
+  opacity: 0.5;
+  height: 40px;
+  cursor: pointer;
+}
+.active {
+  opacity: 1;
 }
 .option-leave-to,
 .option-enter-from {

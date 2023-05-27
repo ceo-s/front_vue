@@ -1,14 +1,21 @@
 import api from "@/fsdcomponent/shared/api/ky";
 
-export function createClient(name, telegram, description) {
-  const resp = api
-    .post("clients/", {
+export async function createProgram(
+  name,
+  description,
+  date_start,
+  date_finish,
+  client
+) {
+  return await api
+    .post("dprograms/", {
       json: {
         name,
-        telegram,
         description,
+        date_start,
+        date_finish,
+        client,
       },
     })
     .json();
-  return resp;
 }

@@ -1,14 +1,35 @@
 <template>
   <div>
-    <div class="diet-builder">
+    <div class="selection">
+      <select-client />
+      <select-diet-program />
+    </div>
+    <h1 v-if="client">Выбран клиент: {{ client.name }}</h1>
+    <div v-if="programId" class="diet-builder">
       <div class="block info">
         <h1>{{ programInfo.name }}</h1>
         <h2>{{ client.name }}</h2>
         <h3>{{ programInfo.date_start }} - {{ programInfo.date_finish }}</h3>
+        <input
+          :value="dateBinding(programInfo.date_start)"
+          type="date"
+          name=""
+          id=""
+        />
+        <input
+          :value="dateBinding(programInfo.date_finish)"
+          type="date"
+          name=""
+          id=""
+        />
+        <!-- <settings-icon @click="" /> -->
       </div>
       <div class="block comment">
         <h2>Описание:</h2>
-        <p>{{ programInfo.description }}</p>
+        <textarea
+          id="program-description"
+          v-model="programInfo.description"
+        ></textarea>
       </div>
       <diet-products-builder
         v-model:products="allowedProducts"
@@ -26,25 +47,30 @@
         :nutrientsList="nutrientsList"
         class="block nutrients"
       />
+      <default-button @click="saveProgram">SAVE</default-button>
     </div>
-    <default-button @click="saveProgram">SAVE</default-button>
   </div>
 </template>
 
 <script>
 import { getDietProgram } from "@/fsdcomponent/entities/Diet/api/Get";
 import { updateProgram } from "@/fsdcomponent/entities/Diet/api/Update";
+import { toJSFormattedDate } from "../shared/lib/DateManagment";
+import SelectClient from "@/fsdcomponent/features/Client/SelectClient.vue";
+import SelectDietProgram from "../features/Diet/SelectDietProgram.vue";
 import DietProductsBuilder from "../widgets/Diet/DietProductsBuilder.vue";
 import DayReferenceBuilder from "../widgets/Diet/DayReferenceBuilder.vue";
 import NutrientsBuilder from "../widgets/Diet/NutrientsBuilder.vue";
 export default {
   components: {
+    SelectClient,
+    SelectDietProgram,
     DayReferenceBuilder,
     NutrientsBuilder,
     DietProductsBuilder,
   },
-  mounted() {
-    this.fetchAll();
+  unmounted() {
+    this.$store.dispatch("programs/resetStore");
   },
   data() {
     return {
@@ -54,15 +80,11 @@ export default {
       daysRef: [],
       nutrientsList: [],
       schedule: [],
-      client: {
-        id: 1,
-        name: "Alexey Ebanov",
-      },
     };
   },
   methods: {
     async fetchAll() {
-      const program = await getDietProgram(1);
+      const program = await getDietProgram(this.programId);
       this.allowedProducts = program.recommended_products;
       this.forbiddenProducts = program.forbidden_products;
       this.daysRef = program.day_reference;
@@ -87,6 +109,23 @@ export default {
         nutrients: this.nutrientsList,
         day_reference: this.daysRef,
       });
+    },
+    dateBinding(date) {
+      if (date) return date.split(".").reverse().join("-");
+    },
+  },
+  computed: {
+    client() {
+      return this.$store.state.programs.client;
+    },
+    programId() {
+      return this.$store.state.programs.dietProgramId;
+    },
+  },
+  watch: {
+    programId() {
+      console.log("Watcher here");
+      this.fetchAll();
     },
   },
 };
@@ -118,7 +157,12 @@ export default {
     gap: 10px;
   }
 }
-
+.selection {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  gap: 20px;
+}
 .block {
   background: #222;
   border-radius: 20px;
@@ -210,5 +254,15 @@ TODO вынести кнопку в UI при рефакторинге в FSD .a
   border-radius: 20px;
   margin-top: auto;
   cursor: pointer;
+}
+#program-description {
+  width: 100%;
+  height: 80%;
+  resize: none;
+  outline: none;
+  background: none;
+  text-decoration: none !important;
+  color: #fff;
+  border: none;
 }
 </style>

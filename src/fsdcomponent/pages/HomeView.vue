@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="blurs"></div>
     <div class="home">
       <div class="main-text">
         <h1>Самая продвинутая платформа <span>для тренеров</span></h1>
@@ -10,16 +11,51 @@
       </div>
       <div class="block-container">
         <div class="block-main">
-          <h1>Клиентская база</h1>
+          <div class="content">
+            <h1>Своя страница-визтка</h1>
+            <p>Напечатай свой qr на дверях в фитнес клуб</p>
+            <p>Будь самым продвинутым в своей деревне</p>
+          </div>
+          <div class="media"></div>
         </div>
         <div class="block-main">
-          <h1>Менеджмент программ тренировок</h1>
+          <div class="content">
+            <h1>Управляйте клиентами</h1>
+            <p>Все клиенты в одном месте.</p>
+            <p>Отслеживайте прогресс в пару кликов.</p>
+            <p>Подведение ол-тайм статистики по выбранным упражнениям.</p>
+          </div>
         </div>
         <div class="block-main">
-          <h1>Менеджмент программ питания</h1>
+          <div class="content">
+            <h1>Составляйте программы тренировок и питания</h1>
+            <p>
+              Интуитивно понятный интерфейс для составления програм тренировок и
+              питания.
+            </p>
+            <p>Автокомплит,</p>
+          </div>
         </div>
         <div class="block-main">
-          <h1>Интеграция с телеграмом</h1>
+          <div class="content">
+            <h1>Библиотека продуктов и упражнений</h1>
+            <p>
+              Видео с техникой и описанием упражнений, удобный поиск и
+              сортировка.
+            </p>
+            <p>Сотни продуктов с указанием пищевой ценности.</p>
+            <p>Добавьте свои</p>
+          </div>
+        </div>
+        <div class="block-main">
+          <div class="content">
+            <h1>Интеграция с телеграмом</h1>
+            <p>
+              Не нужно ничего скачивать! Редактируйте и создавайте программы в
+              нашем боте.
+            </p>
+            <p>Доступ к кабинету прямо из диалога с клиентом.</p>
+          </div>
         </div>
       </div>
       <div class="why-us">
@@ -44,8 +80,6 @@
       >
         <div class="button">SALAMALEKUM</div>
       </div> -->
-      <dialog ref="dialog">AAAAAAAA</dialog>
-      <default-button @click="openDialog">OPEN</default-button>
     </div>
   </div>
 </template>
@@ -62,12 +96,12 @@ export default {
     };
   },
   mounted() {
-    const dialog = this.$refs.dialog;
-    console.log(dialog);
-    this.dialog = dialog;
-    console.log(dialog.parentNode);
-    const backdrop = document.querySelector("::backdrop");
-    console.log(backdrop);
+    // const dialog = this.$refs.dialog;
+    // console.log(dialog);
+    // this.dialog = dialog;
+    // console.log(dialog.parentNode);
+    // const backdrop = document.querySelector("::backdrop");
+    // console.log(backdrop);
   },
   name: "HomeView",
   components: {},
@@ -93,6 +127,29 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.home {
+  position: relative;
+}
+.blurs {
+  position: absolute;
+  background-image: linear-gradient(rgb(249, 15, 237), #00ffab);
+  filter: blur(8em);
+  opacity: 0.5;
+  width: 500px;
+  height: 500px;
+  border-radius: 50% 20%;
+}
+// .home::before,
+// .home::before {
+//   content: "";
+//   inset: 0;
+//   position: fixed;
+//   background: rgb(86, 76, 76);
+//   opacity: 0.3;
+//   z-index: -1;
+//   background-image: linear-gradient(rgb(249, 15, 237), #00ffab);
+//   filter: blur(1em);
+// }
 .button {
   position: relative;
   margin: auto;
@@ -118,25 +175,28 @@ export default {
 }
 .main-text {
   margin: auto;
-  width: 700px;
+  margin-top: 4rem;
+  max-width: 70rem;
   text-overflow: clip;
 }
 .main-text h1 {
-  font-size: 50px;
+  font-size: 6vw;
 }
 .main-text h1 span {
-  font-size: 50px;
+  // font-size: 50px;
   background-image: linear-gradient(30deg, #c976d8, #52f5f2);
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .main-text h3 {
-  font-size: 30px;
+  font-size: 3vw;
+  opacity: 0.7;
 }
 .main-photo {
   @include flex-centered;
   background: none;
   object-fit: cover;
+  margin-top: 3rem;
 }
 .main-photo img {
   width: 70%;
@@ -175,14 +235,15 @@ export default {
 }
 .block-container {
   display: flex;
-  justify-content: space-around;
-  height: fit-content;
-  width: 100%;
+  flex-direction: column;
+  background: #37e2d5;
 }
 .block-main {
-  height: 300px;
-  width: 260px;
-  background: #00ffab;
+  display: flex;
+}
+.block-main .content {
+}
+.block-main .media {
 }
 .why-us {
   display: flex;

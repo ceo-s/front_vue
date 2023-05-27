@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="auth-container">
     <h1>Registration</h1>
-    <default-input v-model="username" :placeholder="'username'" />
-    <default-input v-model="telegram" :placeholder="'telegram'" />
-    <default-input
+    <input class="auth-input" v-model="username" :placeholder="'username'" />
+    <input class="auth-input" v-model="telegram" :placeholder="'telegram'" />
+    <input
+      class="auth-input"
       type="password"
       @input="(e) => $emit('update:password', e)"
       v-model="password"
@@ -47,4 +48,18 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.auth-container {
+  @include flex-centered;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 80%;
+  width: 100%;
+}
+.auth-input {
+  width: 80%;
+  height: 40px;
+  border-radius: 14px;
+  padding-left: 6px;
+}
+</style>

@@ -1,15 +1,17 @@
 <template>
   <div>
     <teleport to="body">
-      <div
-        @click="$emit('update:visible', false)"
-        v-if="visible"
-        class="pop-up-back"
-      >
-        <div @click.stop class="pop-up">
-          <slot></slot>
+      <transition name="popup">
+        <div
+          @click="$emit('update:visible', false)"
+          v-if="visible"
+          class="pop-up-back"
+        >
+          <div @click.stop class="pop-up">
+            <slot></slot>
+          </div>
         </div>
-      </div>
+      </transition>
     </teleport>
   </div>
 </template>
@@ -45,9 +47,17 @@ export default {
   width: min-content;
   height: min-content;
   transition: 1s;
-  background: #d8d8d8;
+  background: #141e28;
   margin: auto;
-  padding: 10px;
+  // padding: 10px;
   border-radius: 15px;
+}
+.popup-leave-to,
+.popup-enter-from {
+  opacity: 0;
+}
+.popup-enter-active,
+.popup-leave-active {
+  transition: ease 200ms;
 }
 </style>

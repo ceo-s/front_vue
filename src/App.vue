@@ -1,7 +1,7 @@
 <template>
   <div class="logo"><img src="@/assets/pngwing.com.png" alt="" /></div>
   <main-menu />
-  <header></header>
+  <!-- <header></header> -->
   <div class="content">
     <router-view v-slot="{ Component }">
       <transition name="router" mode="out-in">
@@ -42,7 +42,7 @@ export default {
   text-align: center;
   color: #eae3da;
   font-family: "Carlito", sans-serif;
-  background: #ffffff;
+  // background: #ffffff;
 }
 ::-webkit-scrollbar {
   display: none;
@@ -61,7 +61,7 @@ body {
   font-family: "Bebas Neue", sans-serif;
   overflow-x: hidden;
   scrollbar-width: none;
-  height: fit-content;
+  height: 100%;
   // background: #20252b;
 }
 header {
@@ -70,11 +70,11 @@ header {
   height: 70px;
   position: fixed;
   z-index: 0;
-  background: rgb(37, 40, 44);
+  background: rgb(29, 32, 37);
 }
 body {
   // position: relative;
-  background: #20252b;
+  background: #15181c;
   // @include flex-centered;
 }
 a {
@@ -124,8 +124,8 @@ nav {
 }
 
 .content {
-  background: #20252b;
-  padding-top: 100px;
+  background: #15181c;
+  // padding-top: 100px;
 }
 textarea.textarea {
   resize: none;

@@ -1,7 +1,13 @@
 <template>
   <div class="meal-container">
     <div class="meal-head">
-      <h3>{{ meal.name }}</h3>
+      <input
+        style="font-size: large"
+        v-model="meal.name"
+        class="text-input"
+        type="text"
+      />
+      <!-- <h3>{{ meal.name }}</h3> -->
       <slot name="addFoodAmount"></slot>
     </div>
     <div

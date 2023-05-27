@@ -1,9 +1,11 @@
 <template>
   <div class="day">
-    <h2>{{ day.date }}</h2>
-    <draggable itemKey="index" v-model="day.exercises">
+    <h2>{{ weekday }}</h2>
+    <h5>{{ day.date }}</h5>
+    <draggable class="exercises" itemKey="index" v-model="day.exercises">
       <template #item="{ element, index }">
         <training-exercise
+          class="gocno"
           @dragstart="startDrag($event, index)"
           @dragend="endDrag($event)"
           item-key="index"
@@ -15,15 +17,16 @@
         />
       </template>
     </draggable>
-    <default-button v-if="!dragging" @click="addExercise">ADD</default-button>
+    <!-- <default-button  @click="addExercise">ADD</default-button> -->
+    <div v-if="!dragging" @click="addExercise" class="day-footer add">Add</div>
     <div
       @drop="onDrop"
       @dragenter.prevent
       @dragover.prevent
       v-if="dragging"
-      class="bin"
+      class="day-footer bin"
     >
-      DELETE
+      <trash-icon :color="'red'" />
     </div>
   </div>
 </template>
@@ -38,6 +41,7 @@ export default {
     draggable,
   },
   props: {
+    weekday: { String },
     day: { Object },
   },
   data() {
@@ -75,9 +79,28 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgb(74, 82, 63);
-  width: 260px;
+  background: #2e223d;
+  width: 92%;
+  max-width: 350px;
   height: fit-content;
   border-radius: 20px;
+  padding-top: 6px;
+}
+.exercises {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.day-footer {
+  @include flex-centered;
+  height: 50px;
+  width: 100%;
+  background: #ffffff3d;
+  border-radius: 0 0 20px 20px;
+}
+.bin {
+  background: rgba(255, 0, 0, 0.544);
 }
 </style>
