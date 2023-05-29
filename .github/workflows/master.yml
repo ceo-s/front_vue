@@ -22,4 +22,6 @@ jobs:
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           echo "${{ secrets.ALLOWED_HOSTS }}" > ~/.ssh/known_hosts
           ssh admin@${{secrets.SERVER_IP}} "echo hello  > hi.txt"
-          docker-compose config | ssh admin@${{secrets.SERVER_IP}} "docker-compose up -d -"
+          ls
+          pwd
+          # docker-compose config | ssh admin@${{secrets.SERVER_IP}} "docker-compose up -d -"
