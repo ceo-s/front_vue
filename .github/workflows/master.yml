@@ -24,4 +24,6 @@ jobs:
           ssh admin@${{secrets.SERVER_IP}} "echo hello  > hi.txt"
           ls
           pwd
+          cd .. && ls
+          docker-compose config
           # docker-compose config | ssh admin@${{secrets.SERVER_IP}} "docker-compose up -d -"
