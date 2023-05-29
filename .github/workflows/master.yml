@@ -21,5 +21,5 @@ jobs:
           install -m 600 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           echo "${{ secrets.ALLOWED_HOSTS }}" > ~/.ssh/known_hosts
-          ssh admin@${{secrets.SERVER_IP}} "echo hello world > hi.txt"
+          ssh admin@${{secrets.SERVER_IP}} "echo hello > hi.txt"
           docker-compose config | ssh admin@${{secrets.SERVER_IP}} "docker-compose up -d -"
