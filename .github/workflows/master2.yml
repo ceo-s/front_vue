@@ -18,7 +18,10 @@ jobs:
           mkdir -p ~/.ssh
           echo "HOST *" > ~/.ssh/config
           echo "StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "ServerAliveInterval 20" >> ~/.ssh/config
+          echo "TCPKeepAlive no" >> ~/.ssh/config
           install -m 600 -D /dev/null ~/.ssh/id_rsa
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           ssh admin@${{secrets.SERVER_IP}} echo hello
+
           docker-compose -H "ssh://admin@${{secrets.SERVER_IP}}" up -d --build
