@@ -5,4 +5,4 @@ services:
     container_name: front_vue
     build: .
     ports:
-      - "8080:80"
+      - "194.87.248.136:80:80"
