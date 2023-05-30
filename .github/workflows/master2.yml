@@ -24,5 +24,5 @@ jobs:
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           ssh admin@${{secrets.SERVER_IP}} echo hello
 
-          docker build -t vue
+          docker build -t vue .
           docker -H ssh://admin@${{secrets.SERVER_IP}} run -d vue
