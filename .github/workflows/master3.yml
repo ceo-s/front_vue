@@ -1,0 +1,27 @@
+name: Vue CD 3
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "HOST *" > ~/.ssh/config
+          echo "StrictHostKeyChecking no" >> ~/.ssh/config
+          echo "ServerAliveInterval 20" >> ~/.ssh/config
+          echo "TCPKeepAlive no" >> ~/.ssh/config
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          ssh admin@${{secrets.SERVER_IP}} echo hello
+
+          docker -H ssh://admin@${{secrets.SERVER_IP}} run -d
