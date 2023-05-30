@@ -22,5 +22,5 @@ jobs:
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           ssh admin@${{secrets.SERVER_IP}} echo hello
           docker context create remote \     
-            ‐‐docker host=ssh://admin@${{secrets.SERVER_IP}}
-          docker-compose ‐‐context remote up -d
+            --docker host=ssh://admin@${{secrets.SERVER_IP}}
+          docker-compose --context remote up -d
