@@ -24,4 +24,4 @@ jobs:
           echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
           ssh admin@${{secrets.SERVER_IP}} echo hello
 
-          docker -H ssh://admin@${{secrets.SERVER_IP}} run -d
+          docker -H ssh://admin@${{secrets.SERVER_IP}} run -d $(docker build -q .)
