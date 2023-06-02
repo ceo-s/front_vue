@@ -1,9 +1,9 @@
 <template>
   <div>
     <settings-icon @click="$emit('update:modelValue', !modelValue)" />
-    <!-- <new-pop-up :visible="updating">
+    <!-- <pop-up :visible="updating">
       <day-reference :dayRef="dayRef" />
-    </new-pop-up> -->
+    </pop-up> -->
   </div>
 </template>
 

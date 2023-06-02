@@ -1,11 +1,11 @@
 <template>
   <div>
     <default-button @click="visible = true">Add Program</default-button>
-    <new-pop-up v-model:visible="visible">
+    <pop-up v-model:visible="visible">
       <create-program
         @update:program="$emit('update:program', $event), (visible = false)"
       />
-    </new-pop-up>
+    </pop-up>
   </div>
 </template>
 

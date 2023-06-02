@@ -12,18 +12,22 @@ export default {
 
 <style lang="scss" scoped>
 .default-button {
-  width: 160px;
+  @include bordered;
+  width: 200px;
   aspect-ratio: 3/1;
   cursor: pointer;
-  border: 2px solid #000;
-  border-radius: 16px;
+  border: 3px solid $color4;
   transition: all 150ms;
+  background: none;
+  color: $color5;
+  font-size: large;
+  font-weight: 600;
 }
 .default-button:hover {
-  box-shadow: 0 0 10px 1px #b3b5b8;
+  // box-shadow: 0 0 10px 1px #b3b5b8;
+  scale: 1.01;
 }
 .default-button:active {
-  background: #c4cad4;
 }
 .default-button:disabled {
   box-shadow: none;

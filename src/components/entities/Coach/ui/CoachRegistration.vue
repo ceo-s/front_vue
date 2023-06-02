@@ -1,16 +1,17 @@
 <template>
   <div class="auth-container">
     <h1>Registration</h1>
-    <input class="auth-input" v-model="username" :placeholder="'username'" />
-    <input class="auth-input" v-model="telegram" :placeholder="'telegram'" />
+    <input v-model="username" :placeholder="'username'" />
+    <input v-model="telegram" :placeholder="'telegram'" />
     <input
-      class="auth-input"
       type="password"
       @input="(e) => $emit('update:password', e)"
       v-model="password"
       :placeholder="'password'"
     />
-    <default-button @click="submitForm">Submit</default-button>
+    <default-button class="submit-button" @click="submitForm"
+      >Submit</default-button
+    >
   </div>
 </template>
 
@@ -35,12 +36,12 @@ export default {
       const resp = await login(this.username, this.password);
       console.log(resp);
       this.$store.commit("auth/setToken", resp.auth_token);
-      this.$router.go("/profile");
       setTimeout(() => {
         login(this.username, this.password).then((resp) => {
           console.log(resp);
           this.$store.commit("auth/setToken", resp.auth_token);
-          this.$router.go("/profile");
+          this.$router.push("/profile");
+          this.$router.go();
         });
       }, 2000);
     },
@@ -55,11 +56,21 @@ export default {
   justify-content: space-around;
   height: 80%;
   width: 100%;
+  input {
+    @include drop-default;
+    @include bordered;
+    background: $color3;
+    padding-left: 2ch;
+    width: 82%;
+    height: 40px;
+  }
+  input:focus {
+    box-shadow: 0 0 10px #000;
+  }
 }
-.auth-input {
-  width: 80%;
-  height: 40px;
-  border-radius: 14px;
-  padding-left: 6px;
+.submit-button {
+  border: none;
+  position: relative;
+  // @include neon-border(45deg, $color-blue, $color-pink, 6px, 16px);
 }
 </style>

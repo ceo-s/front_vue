@@ -1,35 +1,35 @@
 <template>
   <div>
-    <new-menu-button @click="log">Авторизироваться</new-menu-button>
-    <new-pop-up v-model:visible="popUpVisible">
+    <new-menu-button @click="popUpVisible = true"
+      >Авторизироваться</new-menu-button
+    >
+    <pop-up v-model:visible="popUpVisible">
       <div class="form">
         <div class="buttons">
           <button
-            class="button"
             :class="{ active: currentOption === 'CoachAuthorization' }"
             @click="
               currentOption = 'CoachAuthorization';
               direction2 = '100px';
             "
           >
-            Authorization
+            Войти
           </button>
           <button
-            class="button"
             :class="{ active: currentOption === 'CoachRegistration' }"
             @click="
               currentOption = 'CoachRegistration';
               direction2 = '-100px';
             "
           >
-            Registration
+            Зарегистрироваться
           </button>
         </div>
         <transition mode="out-in" name="option">
-          <component :is="currentOption"></component>
+          <component :is="currentOption" @update="log"></component>
         </transition>
       </div>
-    </new-pop-up>
+    </pop-up>
   </div>
 </template>
 
@@ -41,6 +41,12 @@ export default {
     CoachAuthorization,
     CoachRegistration,
   },
+  props: {
+    defaultOption: { String },
+  },
+  mounted() {
+    this.currentOption = this.defaultOption;
+  },
   data() {
     return {
       popUpVisible: false,
@@ -48,8 +54,8 @@ export default {
     };
   },
   methods: {
-    log(ev) {
-      this.popUpVisible = true;
+    log(e) {
+      console.log(e);
     },
   },
 };
@@ -65,16 +71,20 @@ export default {
 .buttons {
   display: flex;
   width: 100%;
+  button {
+    @include drop-default;
+    flex-grow: 1;
+    opacity: 0.5;
+    height: 40px;
+    cursor: pointer;
+    background: linear-gradient($color3, $color1 100%);
+    font-size: 0.8em;
+  }
+  button.active {
+    color: $font-color1;
+  }
 }
-.button {
-  flex-grow: 1;
-  opacity: 0.5;
-  height: 40px;
-  cursor: pointer;
-}
-.active {
-  opacity: 1;
-}
+
 .option-leave-to,
 .option-enter-from {
   opacity: 0;

@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <new-pop-up v-model:visible="search">
+    <pop-up v-model:visible="search">
       <product-select
         class="select"
         @update:products="updateProducts"
         :selectedProducts="products"
       ></product-select>
       <!-- </div> -->
-    </new-pop-up>
+    </pop-up>
     <default-button style="margin-top: 10px" @click="search = true"
       >Add:</default-button
     >

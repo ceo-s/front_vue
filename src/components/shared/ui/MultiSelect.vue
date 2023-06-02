@@ -8,7 +8,7 @@
         class="option chosen"
       >
         <h4>{{ chosen.name }}</h4>
-        <h4>{{ chosen.id }}</h4>
+        <!-- <h4>{{ chosen.id }}</h4> -->
       </div>
       <div
         :key="option.id"
@@ -17,7 +17,7 @@
         class="option"
       >
         <h4>{{ option.name }}</h4>
-        <h4>{{ option.id }}</h4>
+        <!-- <h4>{{ option.id }}</h4> -->
       </div>
     </transition-group>
   </div>
@@ -53,29 +53,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$color1: #729;
 .multi-select {
   display: flex;
+  gap: 0.2em;
   width: 100%;
   height: fit-content;
-  background: #333;
   flex-wrap: wrap;
+  position: absolute;
+  z-index: 0;
+}
+.multi-select::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: $color2;
+  filter: blur(30px);
+  position: absolute;
+  inset: 0;
+  // opacity: 0.7;
 }
 .option {
-  margin: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include bordered;
+  // margin: 2px;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
   padding: 0 14px 0 14px;
   height: 24px;
   min-width: 40px;
-  width: min-content;
+  width: fit-content;
   background: $color1;
-  border-radius: 10px;
+  border: 2px solid $color-pink;
   cursor: pointer;
 }
 .chosen {
-  background: rgb(34, 153, 84);
+  border: 3px solid $color-turquoise;
 }
 .list-move,
 .list-enter-active,

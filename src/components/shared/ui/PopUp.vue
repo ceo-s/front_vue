@@ -1,56 +1,66 @@
 <template>
   <div>
-    <teleport to="body">
-      <transition name="popup">
-        <div
-          @click="$emit('update:visible', false)"
-          v-if="visible"
-          class="pop-up-back"
-        >
-          <div @click.stop class="pop-up">
-            <slot></slot>
-          </div>
-        </div>
-      </transition>
-    </teleport>
+    <transition name="popup">
+      <dialog name="dialog" @click="closeOnClickOutside" ref="popup">
+        <slot></slot>
+      </dialog>
+    </transition>
   </div>
 </template>
 
 <script>
-import { Teleport } from "vue";
 export default {
-  components: {
-    Teleport,
-  },
-  name: "new-pop-up",
+  name: "pop-up",
   props: {
-    visible: {
-      type: Boolean,
-      default: true,
+    visible: { type: Boolean },
+  },
+  // mounted() {
+  //   if (this.visible) {
+  //     this.$refs.popup.showModal();
+  //   }
+  // },
+  methods: {
+    closeOnClickOutside(e) {
+      if (e.target.getAttribute("name") === "dialog") {
+        console.log("Vasya!!");
+        this.$refs.popup.close();
+        this.$emit("update:visible", false);
+      }
+    },
+  },
+  watch: {
+    visible(val) {
+      console.log("WATCH POPUP");
+      if (val) {
+        this.$refs.popup.showModal();
+      }
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.pop-up-back {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: #00000086;
-  z-index: 1000;
-  display: flex;
+@keyframes enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-.pop-up {
-  width: min-content;
-  height: min-content;
-  transition: 1s;
-  background: #141e28;
+dialog[open],
+dialog[open]::backdrop {
+  animation: enter 260ms ease;
+}
+dialog {
+  width: fit-content;
+  height: fit-content;
+  background: $color1;
   margin: auto;
-  // padding: 10px;
   border-radius: 15px;
+}
+dialog::backdrop {
+  background: #000000af;
 }
 .popup-leave-to,
 .popup-enter-from {

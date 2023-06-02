@@ -1,106 +1,149 @@
 <template>
   <div class="select-container" v-clickoutside="close">
-    <div @click="toggleSelect" class="select">
-      <h3>{{ currentOption || "Sort:" }}</h3>
-      <h3 @click="resetOption" v-if="currentOption">❌</h3>
+    <div class="select">
+      <button class="sort" @click.stop="toggleSelect">
+        <h3>{{ currentOption.name || "Sort:" }}</h3>
+      </button>
+      <button
+        class="cross"
+        style="margin-left: auto"
+        @click="resetOption"
+        v-if="currentOption.id"
+      >
+        ❌
+      </button>
     </div>
-    <div v-if="visible" class="options">
-      <div v-if="!options" class="option disabled">Select sort option</div>
-      <div
+    <dialog v-auto-animate ref="dialog">
+      <button v-if="!currentOption.id" disabled class="option">
+        Выберите вариант
+      </button>
+      <button
+        class="option"
         :key="option.id"
         @click="chooseOption(option)"
         v-for="option in options"
-        class="option"
       >
         <h3>{{ option.name }}</h3>
-      </div>
-    </div>
+      </button>
+    </dialog>
   </div>
 </template>
 
 <script>
 export default {
   name: "default-select",
-  props: {
-    modelValue: { Object },
-    options: { Array },
-  },
-  data() {
-    return {
-      visible: false,
-    };
-  },
-  methods: {
-    toggleSelect() {
-      this.visible = !this.visible;
-    },
-    close() {
-      this.visible = false;
-    },
-    chooseOption(option) {
-      this.visible = false;
-      this.$emit("update:modelValue", option);
-    },
-    resetOption() {
-      this.$emit("update:modelValue", {
-        id: 0,
-        name: "Sort:",
-        value: "name",
-        order: 1,
-      });
-    },
-  },
-  computed: {
-    currentOption() {
-      if (this.modelValue.id) {
-        return this.options.find((val) => val.id === this.modelValue.id).name;
-      } else return null;
-    },
-  },
+};
+</script>
+<script setup>
+import { ref } from "vue";
+const props = defineProps(["currentOption", "options"]);
+const emit = defineEmits(["update:currentOption"]);
+const dialog = ref(null);
+const chooseOption = (option) => {
+  emit("update:currentOption", option);
+};
+const resetOption = () => {
+  emit("update:currentOption", {
+    id: 0,
+    name: "Sort:",
+    value: "name",
+    order: 1,
+  });
+};
+
+const toggleSelect = () => {
+  console.log(dialog.value.getAttribute("open"));
+  if (dialog.value.getAttribute("open") === "") {
+    close();
+  } else {
+    dialog.value.show();
+  }
+};
+const close = () => {
+  dialog.value.close();
 };
 </script>
 
 <style lang="scss" scoped>
-$width: 200px;
-$border-width: 2px;
+$height: 2.8rem;
+$width: 8rem;
+$scaling: 0.75;
 .select-container {
+  position: relative;
+  height: 100%;
+}
+@keyframes enter {
+  from {
+    opacity: 0;
+    translate: 0 calc(-1 * $height);
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+dialog {
+  z-index: 1;
+  border: none;
+  width: $width;
+  background: $color3;
+  max-height: 7rem;
+  overflow-y: scroll;
+  top: $height;
+}
+dialog[open] {
   display: flex;
   flex-direction: column;
-  position: absolute;
+  animation: enter 120ms linear;
 }
 .select {
-  height: 50px;
-  width: $width;
-  border: $border-width solid #000;
-  background: #fff;
   display: flex;
-  justify-content: space-evenly;
-  justify-content: center;
-  align-items: center;
-  z-index: 0;
-  // position: absolute;
-  cursor: pointer;
-}
-.options {
-  min-height: fit-content;
-  max-height: 300px;
-  overflow-y: scroll;
-  width: fit-content;
-  background: #fff;
-  border: $border-width solid #000;
-  border-top: none;
-  // border-radius: 0 0 15px 15px;
+  height: 100%;
+  z-index: 1;
+  button {
+    @include drop-default;
+    cursor: pointer;
+    // height: $height;
+    height: 100%;
+    background: $color3;
+    // border-radius: 0 calc($height / 2) calc($height / 2) 0;
+  }
+  .sort {
+    width: $width;
+    border-left: 2px solid $color5;
+  }
+  .cross {
+    // width: 3ch;
+    position: absolute;
+    right: 0;
+    cursor: crosshair;
+    background: none;
+  }
 }
 .option {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  width: calc($width - ($border-width * 2));
+  @include drop-default;
+  min-height: 2rem;
+  border-top: 1px solid $color5;
+  border-left: 2px solid $color5;
+  background: $color3;
   cursor: pointer;
 }
-.disabled {
-  opacity: 0.6;
+.option:disabled {
   cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+@media (width < 600px) {
+  dialog {
+    width: calc($width * $scaling);
+    top: calc($height * $scaling);
+  }
+  .select {
+    button {
+      height: calc($height * $scaling);
+    }
+    .sort {
+      width: calc($width * $scaling);
+    }
+  }
 }
 </style>

@@ -21,6 +21,10 @@ export const auth = {
       localStorage.setItem("Authorization", "Token " + token);
       state.token = token;
     },
+    removeToken(state) {
+      localStorage.removeItem("Authorization");
+      state.token = "";
+    },
     setStatus(state, status) {
       state.isAuthenticated = status;
     },

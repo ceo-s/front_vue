@@ -5,7 +5,7 @@
       :disabled="Boolean(!this.$store.state.programs.clientId)"
       >Программы</default-button
     >
-    <new-pop-up v-model:visible="visible">
+    <pop-up v-model:visible="visible">
       <div class="container">
         <training-program-demo
           @click="selectProgram(program.id)"
@@ -16,7 +16,7 @@
         />
       </div>
       <add-program @update:program="(program) => programs.push(program)" />
-    </new-pop-up>
+    </pop-up>
   </div>
 </template>
 

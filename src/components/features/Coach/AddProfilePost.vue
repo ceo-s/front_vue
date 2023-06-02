@@ -3,9 +3,9 @@
     <hr style="border: 1px solid #000" />
 
     <button @click="visible = true" class="add-post">+</button>
-    <new-pop-up v-model:visible="visible">
+    <pop-up v-model:visible="visible">
       <PostChoice @select:option="addPost" />
-    </new-pop-up>
+    </pop-up>
   </div>
 </template>
 

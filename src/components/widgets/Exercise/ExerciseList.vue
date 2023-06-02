@@ -15,7 +15,9 @@
         />
       </div>
     </adaptive-list>
-    <exercise-detail v-if="detailId" v-model:exerciseId="detailId" />
+    <pop-up @update:visible="detailId = 0" :visible="Boolean(detailId)">
+      <exercise-detail v-if="detailId" v-model:exerciseId="detailId" />
+    </pop-up>
   </div>
 </template>
 
@@ -39,9 +41,20 @@ export default {
       sortOptions: [
         { id: 1, name: "Name↑", value: "name", order: 1 },
         { id: 2, name: "Name↓", value: "name", order: -1 },
+        { id: 2, name: "Name↓", value: "name", order: -1 },
+        { id: 2, name: "Name↓", value: "name", order: -1 },
+        { id: 2, name: "Name↓", value: "name", order: -1 },
+        { id: 2, name: "Nasdfsdfsdfme↓", value: "name", order: -1 },
+        { id: 2, name: "Name↓", value: "name", order: -1 },
+        { id: 2, name: "Name↓", value: "name", order: -1 },
       ],
       optionsFieldsModels: [
         { field: "sport_tag", toModel: "sports", name: "По видам спорта" },
+        { field: "muscle", toModel: "muscles", name: "По группам мышц" },
+        { field: "muscle", toModel: "muscles", name: "По группам мышц" },
+        { field: "muscle", toModel: "muscles", name: "По группам мышц" },
+        { field: "muscle", toModel: "muscles", name: "По группам мышц" },
+        { field: "muscle", toModel: "muscles", name: "По группам мышц" },
         { field: "muscle", toModel: "muscles", name: "По группам мышц" },
       ],
       detailId: 0,
@@ -52,6 +65,7 @@ export default {
       this.exercises = await listExercises();
     },
     openDetail(id) {
+      console.log(id);
       this.detailId = id;
     },
   },
@@ -60,8 +74,14 @@ export default {
 
 <style lang="scss" scoped>
 .exercise {
+  @include bordered;
   background: #555;
-  width: 260px;
+  width: 100%;
+  max-width: 260px;
   height: 300px;
+  transition: 400ms ease;
+}
+.exercise:hover {
+  scale: 1.02;
 }
 </style>

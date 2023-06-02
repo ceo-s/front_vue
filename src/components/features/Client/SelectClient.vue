@@ -1,7 +1,7 @@
 <template>
   <div>
     <default-button @click="this.visible = true">Select client</default-button>
-    <new-pop-up v-model:visible="visible">
+    <pop-up v-model:visible="visible">
       <div v-if="clients.length" class="container">
         <div>
           <div
@@ -15,7 +15,7 @@
           </div>
         </div>
       </div>
-    </new-pop-up>
+    </pop-up>
   </div>
 </template>
 

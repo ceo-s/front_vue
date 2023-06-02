@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <h2>{{ exercise.name }}</h2>
-    <h3>{{ descriptionCut }}</h3>
+  <div class="exercise-card">
+    <img :src="exercise.image" alt="" />
+    <div class="content">
+      <h2>{{ exercise.name }}</h2>
+    </div>
   </div>
 </template>
 
@@ -24,4 +26,37 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.exercise-card {
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+  width: 100%;
+  img {
+    width: 100%;
+  }
+  .content {
+    height: fit-content;
+    translate: 0 -150%;
+    position: absolute;
+    inset: 0;
+    transition: translate 200ms ease;
+    &::after {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      bottom: 0;
+      left: -50%;
+      width: 200%;
+      height: 150%;
+      background: $color1;
+      filter: blur(10px);
+    }
+  }
+}
+.exercise-card:hover {
+  .content {
+    translate: 0 0;
+  }
+}
+</style>

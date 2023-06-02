@@ -11,7 +11,7 @@
       >
         {{ item.name }}</new-menu-button
       >
-      <authenticate-user />
+      <authenticate-user :defaultOption="'CoachAuthorization'" />
     </new-aside-menu>
   </div>
 </template>

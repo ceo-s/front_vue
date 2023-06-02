@@ -1,23 +1,30 @@
 <template>
   <div v-clickoutside="close" class="multi-select-group">
-    <div class="group-options-container">
+    <div
+      ref="groups"
+      @wheel.prevent="horizontalScroll"
+      class="group-options-container"
+    >
       <div
         :key="i"
         @click="toggleGroup(i)"
         class="group-option"
+        :class="{ current: i === selectedGroup }"
         v-for="(fieldsModels, i) in optionsFieldsModels"
       >
         {{ fieldsModels.name }}
       </div>
     </div>
     <div :key="i" v-for="(options, i) in optionsGroup">
-      <multi-select
-        @update:chosenOptions="
-          updateChosenOptions($event, optionsFieldsModels[i].field)
-        "
-        v-show="selectedGroup === i"
-        :options="options"
-      />
+      <transition name="group">
+        <multi-select
+          @update:chosenOptions="
+            updateChosenOptions($event, optionsFieldsModels[i].field)
+          "
+          v-show="selectedGroup === i"
+          :options="options"
+        />
+      </transition>
     </div>
   </div>
 </template>
@@ -65,6 +72,9 @@ export default {
         this.optionsGroup.push(options);
       }
     },
+    horizontalScroll(e) {
+      this.$refs.groups.scrollBy({ left: e.deltaY < 0 ? -80 : 80 });
+    },
   },
   compted: {},
 };
@@ -76,13 +86,35 @@ export default {
 // }
 .group-options-container {
   display: flex;
-  width: fit-content;
+  width: 100%;
+  position: relative;
+  overflow-x: scroll;
+}
+.group-options-container::-webkit-scrollbar {
+  display: flex;
+}
+.group-options-container::-webkit-scrollbar:horizontal {
 }
 .group-option {
+  @include bordered;
   cursor: pointer;
   height: 30px;
-  min-width: 60px;
-  width: max-content;
-  background: #666;
+  min-width: 100px;
+  min-width: max-content;
+  width: fit-content;
+  padding: 0 1ch;
+  position: relative;
+  background: $color3;
+}
+.current {
+  background: black;
+}
+.group-enter-from,
+.group-leave-to {
+  opacity: 0;
+}
+.group-enter-active,
+.group-leave-active {
+  transition: 400ms;
 }
 </style>

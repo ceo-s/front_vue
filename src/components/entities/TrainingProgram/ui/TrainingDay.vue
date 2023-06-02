@@ -5,6 +5,7 @@
     <draggable class="exercises" item-key="index" v-model="day.exercises">
       <template #item="{ element, index }">
         <training-exercise
+          v-auto-animate
           class="gocno"
           @dragstart="startDrag($event, index)"
           @dragend="endDrag($event)"

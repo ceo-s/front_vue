@@ -3,16 +3,16 @@
     <h1>Login</h1>
     <input
       id="username"
-      class="auth-input"
       v-model="username"
-      :placeholder="'username'"
+      type="text"
+      autocomplete="off"
+      :placeholder="'Telegram:'"
     />
     <input
       id="password"
-      class="auth-input"
       v-model="password"
       type="password"
-      :placeholder="'password'"
+      :placeholder="'Password:'"
     />
     <default-button @click="submitForm">Submit</default-button>
   </div>
@@ -31,7 +31,9 @@ export default {
     async submitForm() {
       const resp = await login(this.username, this.password);
       this.$store.commit("auth/setToken", resp.auth_token);
-      this.$router.go("/profile");
+      this.$router.push("/profile");
+      this.$forceUpdate();
+      this.$emit("update:visible", "aue citati");
     },
   },
 };
@@ -44,11 +46,16 @@ export default {
   justify-content: space-around;
   height: 80%;
   width: 100%;
-}
-.auth-input {
-  width: 80%;
-  height: 40px;
-  border-radius: 14px;
-  padding-left: 6px;
+  input {
+    @include drop-default;
+    @include bordered;
+    background: $color3;
+    padding-left: 2ch;
+    width: 82%;
+    height: 40px;
+  }
+  input:focus {
+    box-shadow: 0 0 10px #000;
+  }
 }
 </style>

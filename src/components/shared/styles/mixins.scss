@@ -1,12 +1,59 @@
 @mixin flex-centered {
   display: flex;
-	justify-content: center;
-	align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+@mixin bordered {
+  border-radius: 20px;
 }
 @mixin drop-default {
-	outline: none;
-	border: none;
-	box-shadow: none;
-	border-radius: 0;
-	background: none;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  background: none;
+}
+@mixin neon-shadow($deg, $color1, $color2, $size, $blur) {
+  & {
+    position: relative;
+  }
+  &::before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient($deg, $color1 42%, $color2 90%);
+    transform: translate3d(0px, 0px, 0) scale($size);
+    filter: blur($blur);
+    opacity: 1;
+    transition: opacity 0.3s;
+    border-radius: inherit;
+  }
+  &::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    border-radius: inherit;
+  }
+}
+@mixin neon-border($deg, $color1, $color2, $size, $blur) {
+  & {
+    position: relative;
+  }
+  &::before,
+  &::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: calc(-1 * $size);
+    background: linear-gradient($deg, $color1 42%, $color2 90%);
+    transition: opacity 0.3s;
+    border-radius: inherit;
+  }
+  &::before {
+    content: "";
+    filter: blur($blur);
+  }
 }

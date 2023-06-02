@@ -1,9 +1,9 @@
 <template>
   <div>
     <plus-icon @click="this.visible = true" :size="0.8" />
-    <new-pop-up v-model:visible="visible">
+    <pop-up v-model:visible="visible">
       <ProductAmountSelect @update:product="addProduct" />
-    </new-pop-up>
+    </pop-up>
   </div>
 </template>
 
