@@ -57,8 +57,8 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  width: 300px;
-  height: 360px;
+  width: 400px;
+  height: 460px;
   overflow-y: scroll;
 }
 .option {

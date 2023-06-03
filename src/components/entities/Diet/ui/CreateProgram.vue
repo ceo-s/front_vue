@@ -47,7 +47,7 @@ export default {
 
 <style lang="scss" scoped>
 .program-create {
-  height: 340px;
-  width: 260px;
+  height: 460px;
+  width: 300px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="add-program">
     <default-button @click="visible = true">Add Program</default-button>
     <pop-up v-model:visible="visible">
       <create-program

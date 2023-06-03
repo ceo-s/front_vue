@@ -45,6 +45,12 @@ p {
   color: $font-color2;
   text-decoration: none;
 }
+h1 {
+  color: $font-color1;
+}
+dialog {
+  @include drop-default;
+}
 button {
   color: $color5;
 }

@@ -69,19 +69,33 @@ export default {
   overflow: hidden;
 }
 .buttons {
+  position: relative;
   display: flex;
   width: 100%;
   button {
+    position: relative;
     @include drop-default;
     flex-grow: 1;
-    opacity: 0.5;
-    height: 40px;
+    height: 4em;
     cursor: pointer;
-    background: linear-gradient($color3, $color1 100%);
-    font-size: 0.8em;
+    color: black;
+    font-size: 0.7em;
+    font-weight: 600;
   }
-  button.active {
-    color: $font-color1;
+  button::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #6be2d04d;
+    inset: 0;
+    z-index: -1;
+    filter: blur(50px);
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  button.active::after {
+    opacity: 1;
   }
 }
 

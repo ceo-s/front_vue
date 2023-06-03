@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="exercise-list">
     <search-complex
       v-model:items="exercises"
       :itemsApiLink="exercisesApiLink"
@@ -7,13 +7,13 @@
       :optionsFieldsModels="optionsFieldsModels"
     />
     <adaptive-list>
-      <div :key="exercise.id" v-for="exercise in exercises">
-        <exercise-demo
-          class="exercise"
-          @click="openDetail(exercise.id)"
-          :exercise="exercise"
-        />
-      </div>
+      <exercise-demo
+        :key="exercise.id"
+        v-for="exercise in exercises"
+        class="exercise"
+        @click="openDetail(exercise.id)"
+        :exercise="exercise"
+      />
     </adaptive-list>
     <pop-up @update:visible="detailId = 0" :visible="Boolean(detailId)">
       <exercise-detail v-if="detailId" v-model:exerciseId="detailId" />
@@ -73,6 +73,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.exercise-list {
+  // width: 900px;
+}
 .exercise {
   @include bordered;
   background: #555;

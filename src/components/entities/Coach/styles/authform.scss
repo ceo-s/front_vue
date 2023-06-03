@@ -1,55 +1,3 @@
-<template>
-  <div class="auth-container">
-    <h1>Login</h1>
-    <input
-      id="username"
-      v-model="username"
-      type="text"
-      autocomplete="off"
-      :placeholder="'Telegram:'"
-    />
-    <input
-      id="password"
-      v-model="password"
-      type="password"
-      :placeholder="'Password:'"
-    />
-    <default-button @click="submitForm">Submit</default-button>
-  </div>
-</template>
-
-<script>
-import { login } from "../api/Auth";
-export default {
-  data() {
-    return {
-      username: "",
-      password: "",
-    };
-  },
-  methods: {
-    // FIXME after removing old token still sends it if page is not reloaded (it is in ky config)
-    // TODO after login still does not reload page leading 500 code requests
-    async submitForm() {
-      const resp = await login(this.username, this.password);
-      this.$store.commit("auth/setToken", resp.auth_token);
-      this.$router.push("/profile");
-      this.$forceUpdate();
-      this.$emit("update:visible", "aue citati");
-    },
-    validator(field) {},
-  },
-  computed: {
-    usernameValid() {
-      if (this.username) {
-        return "valid";
-      } else return "not valid";
-    },
-  },
-};
-</script>
-
-<style lang="scss" scoped>
 .auth-container {
   @include flex-centered;
   flex-direction: column;
@@ -127,4 +75,3 @@ export default {
     rotate: 360deg;
   }
 }
-</style>

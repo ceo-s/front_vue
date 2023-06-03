@@ -31,14 +31,15 @@ export default {
   position: relative;
   overflow: hidden;
   object-fit: cover;
-  width: 100%;
+  width: 100px;
+  cursor: pointer;
   img {
     width: 100%;
   }
   .content {
     height: fit-content;
-    translate: 0 -150%;
-    position: absolute;
+    translate: 0 -200%;
+    // position: absolute;
     inset: 0;
     transition: translate 200ms ease;
     &::after {
