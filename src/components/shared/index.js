@@ -16,7 +16,6 @@ import LibraryIcon from "@/components/shared/ui/icons/LibraryIcon.vue";
 import AdaptiveList from "@/components/shared/ui/AdaptiveList.vue";
 import AsideMenu from "@/components/shared/ui/AsideMenu.vue";
 import DefaultButton from "@/components/shared/ui/DefaultButton.vue";
-import MenuButton from "@/components/shared/ui/MenuButton.vue";
 import MyCalendar from "@/components/shared/ui/MyCalendar.vue";
 import PopUp from "@/components/shared/ui/PopUp.vue";
 import GhostInput from "@/components/shared/ui/GhostInput.vue";
@@ -48,7 +47,6 @@ export default [
   AdaptiveList,
   AsideMenu,
   DefaultButton,
-  MenuButton,
   MyCalendar,
   PopUp,
   GhostInput,

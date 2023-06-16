@@ -4,6 +4,8 @@
   justify-content: space-around;
   height: 80%;
   width: 100%;
+  overflow: hidden;
+  overflow-y: hidden;
   h1 {
     color: black;
     text-shadow: 0 0 12px rgba(222, 137, 250, 0.11);
@@ -42,22 +44,20 @@
     color: black;
   }
 }
-.auth-container::after,
-.auth-container::before {
-  content: "";
+.blur {
   width: 200px;
   height: 200px;
   position: absolute;
   filter: blur(100px);
 }
-.auth-container::after {
+.blur {
   background: $color-purple;
   z-index: -1;
   border-radius: 50%;
   bottom: -40%;
   animation: slide 10s alternate infinite;
 }
-.auth-container::before {
+.blur {
   background: $color-turquoise;
   z-index: -1;
   border-radius: 50%;

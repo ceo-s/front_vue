@@ -1,8 +1,8 @@
 <template>
   <div>
-    <new-menu-button @click="popUpVisible = true"
-      >Авторизироваться</new-menu-button
-    >
+    <button @click="popUpVisible = true" v-bind="$attrs">
+      <slot></slot>
+    </button>
     <pop-up v-model:visible="popUpVisible">
       <div class="form">
         <div class="buttons">
@@ -37,6 +37,7 @@
 import CoachAuthorization from "@/components/entities/Coach/ui/CoachAuthorization.vue";
 import CoachRegistration from "@/components/entities/Coach/ui/CoachRegistration.vue";
 export default {
+  inheritAttrs: false,
   components: {
     CoachAuthorization,
     CoachRegistration,
@@ -63,7 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 .form {
-  height: 350px;
+  height: 400px;
   transition: 2s;
   width: 300px;
   overflow: hidden;

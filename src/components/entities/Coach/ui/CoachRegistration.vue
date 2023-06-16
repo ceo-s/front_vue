@@ -12,6 +12,8 @@
     <default-button class="submit-button" @click="submitForm"
       >Submit</default-button
     >
+    <div class="blur"></div>
+    <div class="blur"></div>
   </div>
 </template>
 

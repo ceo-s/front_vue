@@ -1,17 +1,34 @@
 <template>
   <div>
     <transition name="menuicon">
-      <menu-icon v-if="!visible" @click="openMenu" id="menu-icon" />
+      <menu-icon
+        v-if="!visible && $store.state.auth.isAuthenticated"
+        @click="openMenu"
+        id="menu-icon"
+        class="positioned"
+      />
     </transition>
+    <!-- <button class="positioned login-button">Войти</button> -->
+    <authenticate-user
+      v-if="!$store.state.auth.isAuthenticated"
+      class="positioned login-button"
+      :defaultOption="'CoachAuthorization'"
+      >Войти</authenticate-user
+    >
     <new-aside-menu v-model="visible">
-      <new-menu-button
+      <button
+        class="menu-button"
         @click="$router.push(item.path), (this.visible = false)"
         :key="item.id"
         v-for="item in menuItems"
       >
-        {{ item.name }}</new-menu-button
+        {{ item.name }}
+      </button>
+      <authenticate-user
+        class="menu-button"
+        :defaultOption="'CoachAuthorization'"
+        >Авторизироваться</authenticate-user
       >
-      <authenticate-user :defaultOption="'CoachAuthorization'" />
     </new-aside-menu>
   </div>
 </template>
@@ -43,13 +60,20 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-#menu-icon {
+<style lang="scss">
+.positioned {
   position: fixed;
   right: 0;
   top: 0;
-  margin: 10px;
   z-index: 10;
+  margin: 10px;
+}
+.login-button {
+  @include drop-default;
+  font-size: 1.4em;
+  cursor: pointer;
+}
+#menu-icon {
 }
 .menuicon-leave-to,
 .menuicon-enter-from {
@@ -60,5 +84,20 @@ export default {
 }
 .menuicon-leave-active {
   transition: 300ms ease;
+}
+.menu-button {
+  @include drop-default;
+  width: 100%;
+  height: fit-content;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-transform: capitalize;
+  color: antiquewhite;
+  font-size: 1em;
+}
+
+.menu-button:hover {
+  background-color: #444;
+  cursor: pointer;
 }
 </style>

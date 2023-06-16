@@ -4,6 +4,7 @@ import router from "@/router";
 import store from "@/store";
 import Directives from "@/directives";
 import { autoAnimatePlugin } from "@formkit/auto-animate/vue";
+import { MotionPlugin } from "@vueuse/motion";
 import UI from "@/components/shared";
 
 const app = createApp(App);
@@ -18,4 +19,9 @@ Directives.forEach((Directive) => {
 
 // console.log(router.options.routes)
 
-app.use(store).use(router).use(autoAnimatePlugin).mount("#app");
+app
+  .use(store)
+  .use(router)
+  .use(autoAnimatePlugin)
+  .use(MotionPlugin)
+  .mount("#app");

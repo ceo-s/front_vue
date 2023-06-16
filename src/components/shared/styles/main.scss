@@ -77,16 +77,18 @@ input.toggle {
 .logo {
   display: flex;
   position: fixed;
-  inset: 0;
+  left: -6px;
   z-index: 1000;
-  width: min-content;
-  height: min-content;
-  height: 70px;
+  width: fit-content;
+  height: fit-content;
   align-items: center;
 }
 .logo img {
-  width: 60px;
-  height: 60px;
+  width: 5em;
+  aspect-ratio: 1/1;
+  @media (width < 450px) {
+    width: 4em;
+  }
 }
 
 .content {

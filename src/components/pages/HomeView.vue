@@ -13,8 +13,8 @@
         <h2>Инновационные фичи, достойные вашего внимания</h2>
         <p>Готов поспорить вы уже вахуе</p>
       </div>
-      <div class="block-container">
-        <div class="block">
+      <div ref="blocks" class="block-container">
+        <div data-order="1" class="block">
           <div class="icon-container">
             <cabinet-icon
               style="margin-top: 12px; margin-left: 2px"
@@ -26,28 +26,28 @@
 
           <div class="media"></div>
         </div>
-        <div class="block">
+        <div data-order="2" class="block">
           <div class="icon-container">
             <clients-icon style="margin-top: 6px" :size="1.2" />
           </div>
           <h4>Управляйте клиентами</h4>
           <p>Доступ ко всем подопечным в одном месте</p>
         </div>
-        <div class="block">
+        <div data-order="3" class="block">
           <div class="icon-container">
             <programs-icon style="margin-top: 8px" :size="1.3" />
           </div>
           <h4>Составление программ</h4>
           <p>Конструктор программ тренировок и питания</p>
         </div>
-        <div class="block">
+        <div data-order="4" class="block">
           <div class="icon-container">
             <library-icon style="margin-top: 8px" :size="1.1" />
           </div>
           <h4>Общедоступная библиотека</h4>
           <p>Сотни упражнений, продуктов и прочего</p>
         </div>
-        <div class="block">
+        <div data-order="5" class="block">
           <div class="icon-container">
             <telegram-icon
               style="margin-top: 8px; margin-left: -4px"
@@ -57,7 +57,7 @@
           <h4>Интеграция с телеграмом</h4>
           <p>Телеграм бот с функционаом, не уступающим сайту</p>
         </div>
-        <div class="block">
+        <div data-order="6" class="block">
           <div class="content">
             <div class="icon-container">
               <community-icon
@@ -72,7 +72,7 @@
           </div>
         </div>
       </div>
-      <div class="block-detail">
+      <div ref="detail1" class="block-detail">
         <div class="content">
           <h2>Нереальный менеджмент всех процессов</h2>
           <p>
@@ -106,7 +106,7 @@
           <img src="@/assets/block-detail-1.jpeg" alt="" />
         </div>
       </div>
-      <div class="block-detail">
+      <div ref="detail2" class="block-detail">
         <div class="content">
           <h2>Нереальный менеджмент всех процессов</h2>
           <p>
@@ -140,90 +140,63 @@
         </div>
       </div>
 
-      <div class="start-now">
+      <div ref="startNow" class="start-now">
         <h2>Регистрируйтесь прямо сейчас!</h2>
         <div>
           <default-button>Lorem </default-button>
-        </div>
-      </div>
-
-      <div class="block-container">
-        <div class="block">
-          <div class="text">
-            <div class="icon-container"></div>
-            <h4>Своя страница-визтка</h4>
-            <p>Напечатай свой qr на дверях в фитнес клуб</p>
-            <p>Будь самым продвинутым в своей деревне</p>
-          </div>
-          <div class="media"></div>
-        </div>
-        <div class="block">
-          <div class="text">
-            <div class="icon-container"></div>
-            <h4>Управляйте клиентами</h4>
-            <p>Все клиенты в одном месте.</p>
-            <p>Отслеживайте прогресс в пару кликов.</p>
-            <p>Подведение ол-тайм статистики по выбранным упражнениям.</p>
-          </div>
-        </div>
-        <div class="block">
-          <div class="text">
-            <div class="icon-container"></div>
-            <h4>Составляйте программы тренировок и питания</h4>
-            <p>
-              Интуитивно понятный интерфейс для составления програм тренировок и
-              питания.
-            </p>
-            <p>Автокомплит,</p>
-          </div>
-        </div>
-        <div class="block">
-          <div class="text">
-            <div class="icon-container"></div>
-            <h4>Библиотека продуктов и упражнений</h4>
-            <p>
-              Видео с техникой и описанием упражнений, удобный поиск и
-              сортировка.
-            </p>
-            <p>Сотни продуктов с указанием пищевой ценности.</p>
-            <p>Добавьте свои</p>
-          </div>
-        </div>
-        <div class="block">
-          <div class="text">
-            <div class="icon-container"></div>
-            <h4>Интеграция с телеграмом</h4>
-            <p>
-              Не нужно ничего скачивать! Редактируйте и создавайте программы в
-              нашем боте.
-            </p>
-            <p>Доступ к кабинету прямо из диалога с клиентом.</p>
-          </div>
-        </div>
-      </div>
-      <div class="why-us">
-        <div class="us-photo">
-          <img src="@/assets/photo-us.jpg" alt="" />
-        </div>
-        <div class="us-text">
-          <h1>Идёт информация почему надо выбрать именно нас</h1>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+<script setup>
+import { useMotion } from "@vueuse/motion";
+import { ref } from "vue";
+const blocks = ref();
+const detail1 = ref();
+const detail2 = ref();
+const startNow = ref();
+const downAnimOptions = (y) => {
+  return {
+    initial: {
+      opacity: 0,
+      y: y,
+    },
+    visibleOnce: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1000,
+      },
+    },
+  };
+};
+const sideAnimOptions = (x) => {
+  return {
+    initial: {
+      opacity: 0,
+      x: x,
+    },
+    visibleOnce: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 1000,
+      },
+    },
+  };
+};
+useMotion(blocks, downAnimOptions(30));
+useMotion(detail1, sideAnimOptions(50));
+useMotion(detail2, sideAnimOptions(-50));
+useMotion(startNow, downAnimOptions(20));
+</script>
 <script>
 import "@vuepic/vue-datepicker/dist/main.css";
 export default {
-  setup() {
-    Date.prototype.addDays = function (days) {
-      var date = new Date(this.valueOf());
-      date.setDate(date.getDate() + days);
-      // new Date().toDateString()
-      return date;
-    };
-  },
+  name: "HomeView",
+  setup() {},
   mounted() {
     // const dialog = this.$refs.dialog;
     // console.log(dialog);
@@ -231,13 +204,17 @@ export default {
     // console.log(dialog.parentNode);
     // const backdrop = document.querySelector("::backdrop");
     // console.log(backdrop);
+    Date.prototype.addDays = function (days) {
+      var date = new Date(this.valueOf());
+      date.setDate(date.getDate() + days);
+      // new Date().toDateString()
+      return date;
+    };
   },
-  name: "HomeView",
-  components: {},
   data() {
     return {
-      minDate: new Date().addDays(-30).toDateString(),
-      maxDate: new Date().addDays(360).toDateString(),
+      minDate: this.addDays(-30).toDateString(),
+      maxDate: this.addDays(360).toDateString(),
       visible: true,
     };
   },
@@ -250,6 +227,12 @@ export default {
     },
     closeDialog() {
       this.dialog.close();
+    },
+    addDays(days) {
+      var date = new Date();
+      date.setDate(date.getDate() + days);
+
+      return date;
     },
   },
 };
@@ -368,19 +351,18 @@ h2 {
   grid-template-rows: auto;
   gap: 26px;
   padding: 4%;
-}
-
-.block-container .block {
-  @include bordered;
-  // height: 240px;
-  background: $color2;
-  padding: 34px 26px 46px;
-  text-align: start;
-  h4 {
-    font-size: 1.2em;
-  }
-  p {
-    font-weight: 300;
+  .block {
+    @include bordered;
+    // height: 240px;
+    background: $color2;
+    padding: 34px 26px 46px;
+    text-align: start;
+    h4 {
+      font-size: 1.2em;
+    }
+    p {
+      font-weight: 300;
+    }
   }
 }
 .icon-container {

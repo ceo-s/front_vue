@@ -5,6 +5,17 @@
       <default-input v-model="name" :placeholder="'Name:'" />
       <default-input v-model="telegram" :placeholder="'Telegram:'" />
       <default-input v-model="description" :placeholder="'Description:'" />
+      <input name="gender" type="radio" id="male" value="M" v-model="gender" />
+      <label for="male">M</label>
+      <input
+        name="gender"
+        type="radio"
+        id="female"
+        value="W"
+        v-model="gender"
+      />
+      <label for="female">W</label>
+      {{ gender }}
       <default-button @click.prevent="submit">Submit</default-button>
     </form>
   </div>
@@ -18,6 +29,7 @@ export default {
       name: "",
       telegram: "",
       description: "",
+      gender: "",
     };
   },
   methods: {
@@ -25,7 +37,8 @@ export default {
       const resp = await createClient(
         this.name,
         this.telegram,
-        this.description
+        this.description,
+        this.gender
       );
       let { sport, ...client } = resp;
       this.$emit("update:client", client);

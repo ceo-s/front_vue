@@ -1,5 +1,5 @@
 <template>
-  <div class="logo"><img src="@/assets/pngwing.com.png" alt="" /></div>
+  <div class="logo"><img src="@/assets/logo.png" alt="" /></div>
   <main-menu />
   <!-- <header></header> -->
   <div class="content">
