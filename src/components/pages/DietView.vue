@@ -26,10 +26,7 @@
       </div>
       <div class="block comment">
         <h2>Описание:</h2>
-        <textarea
-          id="program-description"
-          v-model="programInfo.description"
-        ></textarea>
+        <textarea class="max" v-model="programInfo.description"></textarea>
       </div>
       <diet-products-builder
         v-model:products="allowedProducts"
@@ -156,12 +153,6 @@ export default {
     padding-right: 5px;
     gap: 10px;
   }
-}
-.selection {
-  width: fit-content;
-  margin: auto;
-  display: flex;
-  gap: 20px;
 }
 .block {
   background: #222;

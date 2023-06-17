@@ -40,12 +40,20 @@ body {
   position: relative;
   z-index: 0;
 }
+.route {
+  margin-top: 3em;
+}
 a,
 p {
   color: $font-color2;
   text-decoration: none;
 }
-h1 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $font-color1;
 }
 dialog {
@@ -54,6 +62,7 @@ dialog {
 button {
   color: $color5;
 }
+
 input.default {
   @include drop-default;
   @include bordered;
@@ -69,19 +78,32 @@ input.default:focus::placeholder {
   text-decoration: underline;
 }
 input.ghost {
-  background: green;
+  @include drop-default;
+  text-align: center;
+  color: $font-color1;
 }
-input.toggle {
-  background: green;
+input.ghost::placeholder {
+  color: $font-color2;
+  opacity: 0.5;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 .logo {
   display: flex;
   position: fixed;
+  top: 0;
   left: -6px;
-  z-index: 1;
+  z-index: 5;
   width: fit-content;
   height: fit-content;
   align-items: center;
+  cursor: pointer;
 }
 .logo img {
   width: 5em;
@@ -91,15 +113,34 @@ input.toggle {
   }
 }
 
-.content {
-  // background: #15181c;
-  // padding-top: 100px;
-}
-textarea.textarea {
-  resize: none;
+// .content {
+//   // background: #15181c;
+//   // padding-top: 100px;
+// }
+textarea {
+  border: 1px solid $color4;
   background: none;
-  outline: none;
-  border: none;
+  color: $font-color1;
+  padding: 1ch;
+  border-radius: 10px;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 6px 0 $color4;
+  }
+  &::-webkit-resizer {
+    color: white;
+    background: url("@/assets/resize.png");
+    background-size: 100%;
+    margin-top: 50px;
+  }
+  &::-webkit-resizer:hover {
+    transform: rotate(30deg);
+  }
+}
+textarea.max {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
 }
 .text-input-container {
   display: flex;
@@ -150,4 +191,43 @@ textarea.textarea {
 .router-leave-active,
 .router-enter-active {
   transition: 0.25s ease-in;
+}
+
+.pop-up-select {
+  overflow-y: scroll;
+  height: 500px;
+  width: 300px;
+  .option {
+    @include drop-default;
+    position: relative;
+    height: fit-content;
+    width: 100%;
+    font-size: large;
+    padding: 1em;
+    cursor: pointer;
+    transition: 1s;
+  }
+  .option:hover {
+    background: $color2;
+  }
+  @media (width < 400px) {
+    .option {
+      @include drop-default;
+
+      border-bottom: 2px solid $color2;
+    }
+    .option:last-of-type {
+      border-bottom: none;
+    }
+  }
+}
+.selection {
+  width: fit-content;
+  margin: auto;
+  display: flex;
+  gap: 1em;
+  @media (width < 400px) {
+    flex-direction: column;
+    gap: 0.6em;
+  }
 }

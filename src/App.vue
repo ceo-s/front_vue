@@ -1,8 +1,10 @@
 <template>
-  <div class="logo"><img src="@/assets/logo.png" alt="" /></div>
+  <div @click="$router.push('/')" class="logo">
+    <img src="@/assets/logo.png" alt="" />
+  </div>
   <main-menu />
   <!-- <header></header> -->
-  <div class="content">
+  <div class="route">
     <router-view v-slot="{ Component }">
       <transition name="router" mode="out-in">
         <component :is="Component"></component>

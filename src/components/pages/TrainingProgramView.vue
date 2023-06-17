@@ -33,11 +33,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.selection {
-  width: fit-content;
-  margin: auto;
-  display: flex;
-  gap: 20px;
-}
-</style>
+<style lang="scss" scoped></style>

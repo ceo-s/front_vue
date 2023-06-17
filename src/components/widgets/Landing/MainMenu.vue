@@ -145,7 +145,7 @@ export default {
   margin: 0.2em;
   font-size: 1em;
   height: 4.6em;
-  transition: 600ms;
+  transition: 600ms ease;
 }
 .menu-button:last-of-type {
   @include drop-default;
@@ -165,7 +165,7 @@ export default {
 }
 
 .menu-button:hover {
-  background: #302c3f48;
+  background: #302c3f80;
   cursor: pointer;
 }
 </style>

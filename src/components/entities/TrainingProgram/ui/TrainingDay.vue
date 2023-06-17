@@ -19,7 +19,9 @@
       </template>
     </draggable>
     <!-- <default-button  @click="addExercise">ADD</default-button> -->
-    <div v-if="!dragging" @click="addExercise" class="day-footer add">Add</div>
+    <div v-if="!dragging" @click="addExercise" class="day-footer add">
+      Добавить
+    </div>
     <div
       @drop="onDrop"
       @dragenter.prevent

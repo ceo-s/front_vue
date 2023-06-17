@@ -3,13 +3,19 @@
     <div class="programinfo">
       <h2>{{ program.name }}</h2>
       <p>{{ program.time_start }} - {{ program.time_finish }}</p>
-      <h3>Общие рекоменндации по програме:</h3>
+      <!-- <h3>Общие рекоменндации по програме:</h3> -->
       <textarea
         class="recommendations"
         v-model="program.description"
       ></textarea>
     </div>
     <div class="builder">
+      <default-button :size="0.8" @click="addWeek"
+        >Добавить неделю</default-button
+      >
+      <default-button :size="0.8" @click="delWeek"
+        >Удалить неделю</default-button
+      >
       <div class="weeks">
         <button
           @click="currentWeekIndex = i"
@@ -21,7 +27,6 @@
             {{ week[0].date.slice(0, 5) }} - {{ week.at(-1).date.slice(0, 5) }}
           </p>
         </button>
-        <plus-minus @plus="addWeek" @minus="delWeek" />
       </div>
       <div v-if="this.program.weeks">
         <adaptive-list>
@@ -117,49 +122,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.builder {
-  // background: #ffffff35;
-}
 .recommendations {
-  border: 1px solid $color4;
-  background: none;
-  color: $font-color1;
-  padding: 1ch;
-  border-radius: 10px;
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 6px 0 $color4;
-  }
-  &::-webkit-resizer {
-    color: white;
-    background: url("@/assets/resize.png");
-    background-size: 100%;
-    margin-top: 50px;
-  }
-  &::-webkit-resizer:hover {
-    transform: rotate(30deg);
-  }
+  height: 5em;
+  width: 40em;
+  max-width: 90%;
 }
-
 .weeks {
   position: relative;
   height: fit-content;
   width: 96%;
   display: flex;
   overflow-x: scroll;
-  overflow-y: visible;
+  overflow-x: visible;
+  button {
+    @include drop-default;
+    cursor: pointer;
+    width: max-content;
+    width: 80px;
+    min-width: 100px;
+    padding: 6px;
+    transition: 400ms;
+  }
 }
-.weeks button {
-  @include drop-default;
-  cursor: pointer;
-  width: max-content;
-  width: 80px;
-  min-width: 100px;
-  padding: 6px;
-}
+
 .current {
-  // position: absolute;
-  background: #d02424;
   translate: 0px -4px;
+  text-shadow: 0 0 20px $color-purple;
 }
 </style>

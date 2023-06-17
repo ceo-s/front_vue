@@ -55,6 +55,7 @@ aside {
   background: $color3;
   z-index: 10;
   opacity: 0.7;
+  top: 0;
 }
 .back-leave-to,
 .back-enter-from {

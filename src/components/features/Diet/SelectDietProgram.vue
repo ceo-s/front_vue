@@ -6,7 +6,7 @@
       >Программы</default-button
     >
     <pop-up v-model:visible="visible">
-      <div class="container">
+      <div class="pop-up-select">
         <div
           @click="selectProgram(program.id)"
           :key="program.id"
@@ -44,6 +44,7 @@ export default {
     selectProgram(id) {
       console.log("program selected", id);
       this.$store.commit("programs/setDietProgramId", id);
+      this.visible = false;
     },
   },
   watch: {
@@ -55,14 +56,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  width: 300px;
-  height: 360px;
-  overflow-y: scroll;
-}
-.option {
-  cursor: pointer;
-  height: 60px;
-  border: 1px solid #000;
-}
+// .container {
+//   width: 300px;
+//   height: 360px;
+//   overflow-y: scroll;
+// }
+// .option {
+//   cursor: pointer;
+//   height: 60px;
+//   border: 1px solid #000;
+// }
 </style>

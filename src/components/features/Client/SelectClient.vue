@@ -2,9 +2,9 @@
   <div>
     <default-button @click="this.visible = true">Select client</default-button>
     <pop-up v-model:visible="visible">
-      <div v-if="clients.length" class="container">
+      <div v-if="clients.length" class="pop-up-select">
         <div>
-          <div
+          <button
             @click="selectClient(client)"
             class="option"
             :key="client.id"
@@ -12,7 +12,7 @@
           >
             <h2>{{ client.name }}</h2>
             <h3>{{ client.telegram }}</h3>
-          </div>
+          </button>
         </div>
       </div>
     </pop-up>
@@ -45,17 +45,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.container {
-  overflow-y: scroll;
-  height: 600px;
-  width: 300px;
-}
-.option {
-  height: fit-content;
-  margin: 2px;
-  padding: 4px;
-  background: #444;
-  cursor: pointer;
-}
-</style>
+<style lang="scss" scoped></style>

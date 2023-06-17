@@ -5,7 +5,7 @@
       <default-search
         class="exercise-name"
         v-model="exercise.name"
-        :placeholder="'Упражнение'"
+        :placeholder="'Упражнение:'"
         :itemsApiLink="'exercises'"
         :searchParams="['name__icontains']"
         @update:searchResults="(results) => (hints = results)"
@@ -23,23 +23,26 @@
         <input
           class="program-input"
           v-model="exercise.sets"
-          :placeholder="'Sets:'"
+          :placeholder="'Подходы:'"
+          type="number"
         />
         <input
           class="program-input"
           v-model="exercise.reps"
-          :placeholder="'Reps:'"
+          :placeholder="'Повторы:'"
+          type="number"
         />
         <input
           class="program-input"
           v-model="exercise.weight"
-          :placeholder="'Weight:'"
+          :placeholder="'Вес:'"
+          type="number"
         />
       </div>
       <input
         class="program-input coment"
         v-model="exercise.comment"
-        :placeholder="'Comment:'"
+        :placeholder="'Комментарий:'"
       />
     </div>
   </div>

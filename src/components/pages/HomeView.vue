@@ -4,14 +4,14 @@
     <div class="home">
       <div class="text main">
         <h1>Самая продвинутая платформа <span>для тренеров</span></h1>
-        <p>Вы охуеете от крутости</p>
+        <p>Вы будете в шоке от крутости</p>
       </div>
       <div class="main-photo-container">
         <img class="main-photo" src="@/assets/maxresdefault.jpg" alt="" />
       </div>
       <div class="text intro">
         <h2>Инновационные фичи, достойные вашего внимания</h2>
-        <p>Готов поспорить вы уже вахуе</p>
+        <p>Готов поспорить вы уже в шоке</p>
       </div>
       <div ref="blocks" class="block-container">
         <div data-order="1" class="block">
@@ -196,7 +196,6 @@ useMotion(startNow, downAnimOptions(20));
 import "@vuepic/vue-datepicker/dist/main.css";
 export default {
   name: "HomeView",
-  setup() {},
   mounted() {
     // const dialog = this.$refs.dialog;
     // console.log(dialog);
@@ -239,8 +238,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// @import "src/components/shared/styles/variables.scss";
+.route {
+  margin: 0;
+}
 .home {
+  margin-top: -2em;
   // position: relative;
   // z-index: 0;
   display: flex;

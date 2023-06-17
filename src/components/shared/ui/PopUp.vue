@@ -39,6 +39,8 @@ export default {
       console.log("WATCH POPUP");
       if (val) {
         this.$refs.popup.showModal();
+      } else {
+        this.$refs.popup.close();
       }
     },
   },
@@ -64,6 +66,7 @@ dialog {
   background: $color1;
   margin: auto;
   border-radius: 15px;
+  @include bordered;
 }
 dialog::backdrop {
   background: #000000af;

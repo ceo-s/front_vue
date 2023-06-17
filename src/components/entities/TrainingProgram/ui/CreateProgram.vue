@@ -1,10 +1,12 @@
 <template>
   <div class="program-create">
-    <default-input placeholder="Название цикла" v-model="name" />
-    <default-input
+    <h3>Создать программу</h3>
+    <input class="default" placeholder="Название цикла" v-model="name" />
+    <!-- <input
+      class="default"
       placeholder="Тезисно опишите цели цикла"
       v-model="description"
-    />
+    /> -->
     <my-calendar @update:date="updateDate" :min="30" :max="360" />
     <default-button @click="performCreate">Confirm: </default-button>
   </div>
@@ -16,7 +18,7 @@ export default {
   data() {
     return {
       name: "",
-      description: "",
+      description: "Добавьте коментарий для клиента к тренировочной програме!",
       date: {
         start: "",
         finish: "",
@@ -47,7 +49,24 @@ export default {
 
 <style lang="scss" scoped>
 .program-create {
-  height: 460px;
+  padding: 1.5em;
+  height: 360px;
   width: 300px;
+  // background: #444;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1em;
+  h3 {
+    font-size: 1.2em;
+  }
+  button {
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+input.default {
+  height: 2em;
 }
 </style>

@@ -29,16 +29,17 @@ export default {
   font-size: large;
   font-weight: 600;
   scale: v-bind(size);
-}
-.default-button:hover {
-  // box-shadow: 0 0 10px 1px #b3b5b8;
-  scale: calc(1.02 * v-bind(size));
-}
-.default-button:active {
-}
-.default-button:disabled {
-  box-shadow: none;
-  cursor: not-allowed;
-  background: #5d5d5d98;
+  &:hover {
+    scale: calc(1.02 * v-bind(size));
+  }
+  &:disabled {
+    box-shadow: none;
+    cursor: not-allowed;
+    background: $color2;
+    filter: blur(1px);
+    &:hover {
+      scale: 1;
+    }
+  }
 }
 </style>

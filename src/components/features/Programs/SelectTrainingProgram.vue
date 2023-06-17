@@ -6,7 +6,7 @@
       >Программы</default-button
     >
     <pop-up v-model:visible="visible">
-      <div class="container">
+      <div class="pop-up-select">
         <training-program-demo
           @click="selectProgram(program.id)"
           class="option"
@@ -55,15 +55,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.container {
-  width: 400px;
-  height: 460px;
-  overflow-y: scroll;
-}
-.option {
-  cursor: pointer;
-  height: 60px;
-  border: 1px solid #000;
-}
-</style>
+<style lang="scss" scoped></style>
