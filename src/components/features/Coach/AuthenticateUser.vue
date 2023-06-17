@@ -3,7 +3,7 @@
     <button @click="popUpVisible = true" v-bind="$attrs">
       <slot></slot>
     </button>
-    <pop-up v-model:visible="popUpVisible">
+    <pop-up style="overflow-y: hidden" v-model:visible="popUpVisible">
       <div class="form">
         <div class="buttons">
           <button
@@ -26,7 +26,7 @@
           </button>
         </div>
         <transition mode="out-in" name="option">
-          <component :is="currentOption" @update="log"></component>
+          <component :is="currentOption"></component>
         </transition>
       </div>
     </pop-up>
@@ -53,11 +53,6 @@ export default {
       popUpVisible: false,
       currentOption: "CoachAuthorization",
     };
-  },
-  methods: {
-    log(e) {
-      console.log(e);
-    },
   },
 };
 </script>
@@ -88,7 +83,7 @@ export default {
     width: 100%;
     height: 100%;
     position: absolute;
-    background: #6be2d04d;
+    background: #5838e44d;
     inset: 0;
     z-index: -1;
     filter: blur(50px);

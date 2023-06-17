@@ -1,5 +1,5 @@
 <template>
-  <div class="auth-container">
+  <form @submit.prevent="submitForm" class="auth-container" action="">
     <h1>Login</h1>
     <input
       id="username"
@@ -8,14 +8,17 @@
       autocomplete="off"
       :placeholder="'Telegram:'"
     />
+    <!-- <div>{{ usernameValid }}</div> -->
     <input
       id="password"
       v-model="password"
       type="password"
       :placeholder="'Password:'"
     />
+    <div class="blur pink"></div>
+    <div class="blur blue"></div>
     <default-button @click="submitForm">Submit</default-button>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -30,101 +33,17 @@ export default {
   methods: {
     // FIXME after removing old token still sends it if page is not reloaded (it is in ky config)
     // TODO after login still does not reload page leading 500 code requests
+
     async submitForm() {
       const resp = await login(this.username, this.password);
-      this.$store.commit("auth/setToken", resp.auth_token);
-      this.$router.push("/profile");
-      this.$forceUpdate();
-      this.$emit("update:visible", "aue citati");
-    },
-    validator(field) {},
-  },
-  computed: {
-    usernameValid() {
-      if (this.username) {
-        return "valid";
-      } else return "not valid";
+
+      await this.$store.dispatch("auth/login", resp.auth_token);
+      await this.$router.push("/profile");
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.auth-container {
-  @include flex-centered;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 80%;
-  width: 100%;
-  h1 {
-    color: black;
-    text-shadow: 0 0 12px rgba(222, 137, 250, 0.11);
-  }
-  h1::after {
-    content: "";
-    width: 400px;
-    height: 100px;
-    position: absolute;
-    filter: blur(80px);
-    background: linear-gradient(90deg, $color-purple, $color-turquoise);
-    // left: 0;
-    top: -80%;
-    z-index: -1;
-    border-radius: 50px;
-    animation: rotate 30s linear infinite;
-  }
-  input {
-    position: relative;
-    @include drop-default;
-    @include bordered;
-    background-color: #00000048;
-    padding-left: 2ch;
-    width: 82%;
-    height: 40px;
-    color: white;
-    font-size: 0.7em;
-    transition: 600ms ease;
-  }
-  input:focus {
-    background-color: #00000086;
-  }
-
-  & > button {
-    border: 2px solid black;
-    color: black;
-  }
-}
-.auth-container::after,
-.auth-container::before {
-  content: "";
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  filter: blur(100px);
-}
-.auth-container::after {
-  background: $color-purple;
-  z-index: -1;
-  border-radius: 50%;
-  bottom: -40%;
-  animation: slide 10s alternate infinite;
-}
-.auth-container::before {
-  background: $color-turquoise;
-  z-index: -1;
-  border-radius: 50%;
-  left: -120px;
-  bottom: -55%;
-  animation: slide 10s alternate infinite;
-}
-@keyframes slide {
-  100% {
-    translate: 150px 0;
-  }
-}
-@keyframes rotate {
-  100% {
-    rotate: 360deg;
-  }
-}
+@import "src/components/entities/Coach/styles/authform.scss";
 </style>

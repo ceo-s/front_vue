@@ -15,7 +15,7 @@
 import MainMenu from "@/components/widgets/Landing/MainMenu.vue";
 export default {
   beforeCreate() {
-    this.$store.commit("auth/initStorage");
+    this.$store.dispatch("auth/initStorage");
     if (this.isAuthenticated) {
       this.$store.dispatch("userInfo/fetchProfileInfo");
     } else {

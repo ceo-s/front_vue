@@ -1,8 +1,9 @@
 <template>
   <div>
+    <h1>{{ isAuthenticated ? "YES" : "NO" }}</h1>
     <transition name="menuicon">
       <menu-icon
-        v-if="!visible && $store.state.auth.isAuthenticated"
+        v-if="!visible && isAuthenticated"
         @click="openMenu"
         id="menu-icon"
         class="positioned"
@@ -10,12 +11,13 @@
     </transition>
     <!-- <button class="positioned login-button">Войти</button> -->
     <authenticate-user
-      v-if="!$store.state.auth.isAuthenticated"
+      v-if="!isAuthenticated"
       class="positioned login-button"
       :defaultOption="'CoachAuthorization'"
       >Войти</authenticate-user
     >
     <new-aside-menu v-model="visible">
+      <h1>{{ $store.state.userInfo.profileInfo }}</h1>
       <button
         class="menu-button"
         @click="$router.push(item.path), (this.visible = false)"
@@ -24,20 +26,19 @@
       >
         {{ item.name }}
       </button>
-      <authenticate-user
-        class="menu-button"
-        :defaultOption="'CoachAuthorization'"
-        >Авторизироваться</authenticate-user
-      >
+      <logout-user class="menu-button">Выйти</logout-user>
+      <!-- <logot-user></logot-user> -->
     </new-aside-menu>
   </div>
 </template>
 
 <script>
 import AuthenticateUser from "@/components/features/Coach/AuthenticateUser.vue";
+import LogoutUser from "@/components/features/Coach/LogoutUser.vue";
 export default {
   components: {
     AuthenticateUser,
+    LogoutUser,
   },
   data() {
     return {
@@ -55,6 +56,11 @@ export default {
   methods: {
     openMenu() {
       this.visible = true;
+    },
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.auth.isAuthenticated;
     },
   },
 };

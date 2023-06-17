@@ -4,6 +4,7 @@ import CabinetIcon from "@/components/shared/ui/icons/CabinetIcon.vue";
 import CommunityIcon from "@/components/shared/ui/icons/CommunityIcon.vue";
 import ClientsIcon from "@/components/shared/ui/icons/ClientsIcon.vue";
 import MenuIcon from "@/components/shared/ui/icons/MenuIcon.vue";
+import QuestionIcon from "@/components/shared/ui/icons/QuestionIcon.vue";
 import SettingsIcon from "@/components/shared/ui/icons/SettingsIcon.vue";
 import PlusIcon from "@/components/shared/ui/icons/PlusIcon.vue";
 import PencilIcon from "@/components/shared/ui/icons/PencilIcon.vue";
@@ -27,6 +28,7 @@ import DefaultSelect from "@/components/shared/ui/DefaultSelect.vue";
 import DefaultSearch from "@/components/shared/ui/DefaultSearch.vue";
 import SearchHints from "@/components/shared/ui/SearchHints.vue";
 import PlusMinus from "@/components/shared/ui/PlusMinus.vue";
+import InputValidationHint from "@/components/shared/ui/InputValidationHint.vue";
 
 export default [
   // Icons
@@ -35,6 +37,7 @@ export default [
   CommunityIcon,
   ClientsIcon,
   MenuIcon,
+  QuestionIcon,
   SettingsIcon,
   PlusIcon,
   PencilIcon,
@@ -58,4 +61,5 @@ export default [
   DefaultSearch,
   SearchHints,
   PlusMinus,
+  InputValidationHint,
 ];

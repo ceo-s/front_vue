@@ -1,7 +1,12 @@
 <template>
   <div>
     <transition name="popup">
-      <dialog name="dialog" @click="closeOnClickOutside" ref="popup">
+      <dialog
+        v-bind="$attrs"
+        name="dialog"
+        @click="closeOnClickOutside"
+        ref="popup"
+      >
         <slot></slot>
       </dialog>
     </transition>
@@ -11,6 +16,7 @@
 <script>
 export default {
   name: "pop-up",
+  inheritAttrs: false,
   props: {
     visible: { type: Boolean },
   },

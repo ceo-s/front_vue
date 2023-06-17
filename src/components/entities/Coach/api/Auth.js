@@ -1,24 +1,22 @@
 import api from "@/components/shared/api/ky";
 
 export async function registration(username, telegram, password) {
-  return await api
-    .post("token-auth/users/", {
-      json: {
-        username,
-        password,
-        telegram,
-      },
-    })
-    .json();
+  const resp = await api.post("token-auth/users/", {
+    json: {
+      username,
+      telegram,
+      password,
+    },
+  });
+  return resp.json();
 }
-
+// TODO remove all other return await and replace with return var.json() after api call
 export async function login(username, password) {
-  return await api
-    .post("auth/token/login/", {
-      json: {
-        username,
-        password,
-      },
-    })
-    .json();
+  const resp = await api.post("auth/token/login/", {
+    json: {
+      username,
+      password,
+    },
+  });
+  return resp.json();
 }

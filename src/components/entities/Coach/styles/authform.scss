@@ -16,12 +16,16 @@
     height: 100px;
     position: absolute;
     filter: blur(80px);
-    background: linear-gradient(90deg, $color-purple, $color-turquoise);
+    background: linear-gradient(90deg, $color-pink, $color-blue);
+    // background: linear-gradient(90deg, $color-purple, $color-turquoise);
     // left: 0;
     top: -80%;
     z-index: -1;
     border-radius: 50px;
     animation: rotate 30s linear infinite;
+  }
+  .input-container {
+    width: 100%;
   }
   input {
     position: relative;
@@ -49,16 +53,17 @@
   height: 200px;
   position: absolute;
   filter: blur(100px);
+  // opacity: 0.5;
 }
-.blur {
-  background: $color-purple;
+.blur.pink {
+  background: $color-pink;
   z-index: -1;
   border-radius: 50%;
   bottom: -40%;
   animation: slide 10s alternate infinite;
 }
-.blur {
-  background: $color-turquoise;
+.blur.blue {
+  background: $color-blue;
   z-index: -1;
   border-radius: 50%;
   left: -120px;

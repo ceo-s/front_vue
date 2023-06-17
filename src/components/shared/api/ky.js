@@ -10,7 +10,7 @@ const api = ky.create({
       (error) => {
         const { response } = error;
         if (response.status === 401) {
-          store.commit("auth/removeToken");
+          store.dispatch("auth/logout");
           router.push("/");
         }
         if (response.status === 400) {

@@ -7,29 +7,41 @@ export const auth = {
   },
   getters: {},
   mutations: {
-    initStorage(state) {
-      let token = localStorage.getItem("Authorization");
-      if (token) {
-        state.token = token;
-        state.isAuthenticated = true;
-      } else {
-        state.token = "";
-        state.isAuthenticated = false;
-      }
-    },
     setToken(state, token) {
-      localStorage.setItem("Authorization", "Token " + token);
       state.token = token;
-    },
-    removeToken(state) {
-      localStorage.removeItem("Authorization");
-      state.token = "";
     },
     setStatus(state, status) {
       state.isAuthenticated = status;
     },
   },
-  actions: {},
-  modules: {},
+  actions: {
+    initStorage({ commit }) {
+      let token = localStorage.getItem("Authorization");
+
+      if (token) {
+        commit("setToken", token);
+        commit("setStatus", true);
+      } else {
+        commit("setToken", "");
+        commit("setStatus", false);
+      }
+    },
+    storeToken(_, token) {
+      localStorage.setItem("Authorization", "Token " + token);
+    },
+    removeToken({ commit }) {
+      localStorage.removeItem("Authorization");
+      commit("setToken", "");
+    },
+    login({ dispatch }, token) {
+      dispatch("storeToken", token);
+      dispatch("initStorage");
+    },
+    logout({ dispatch }) {
+      dispatch("removeToken");
+      dispatch("initStorage");
+      location.reload();
+    },
+  },
   namespaced: true,
 };
