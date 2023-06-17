@@ -58,7 +58,8 @@ export default {
   outline: none;
   border: none;
   border-radius: 4px;
-  background: $color4;
+  // background: v-bind(color);
+  background: none;
   /* margin: 10px; */
   /* background: #000; */
   padding-left: 6px;

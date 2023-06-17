@@ -22,7 +22,6 @@
           name=""
           id=""
         />
-        <!-- <settings-icon @click="" /> -->
       </div>
       <div class="block comment">
         <h2>Описание:</h2>
@@ -31,12 +30,12 @@
       <diet-products-builder
         v-model:products="allowedProducts"
         class="block allowed products"
-        >Allowed products</diet-products-builder
+        >Рекомендуемые продукты</diet-products-builder
       >
       <diet-products-builder
         v-model:products="forbiddenProducts"
         class="block forbidden products"
-        >Forbidden products</diet-products-builder
+        >Запрещённые продукты</diet-products-builder
       >
       <day-reference-builder :daysRef="daysRef" class="block days" />
       <nutrients-builder
@@ -44,8 +43,8 @@
         :nutrientsList="nutrientsList"
         class="block nutrients"
       />
-      <default-button @click="saveProgram">SAVE</default-button>
     </div>
+    <default-button @click="saveProgram">SAVE</default-button>
   </div>
 </template>
 
@@ -135,7 +134,6 @@ export default {
     display: grid;
     width: 100%;
     height: 90vh;
-    background: #555;
     border-radius: 20px;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(16, 1fr);
@@ -195,12 +193,12 @@ export default {
   }
 }
 .allowed {
-  grid-column: 1/5;
+  grid-column: 1/6;
   grid-row: 1/9;
   background: #2d2a39;
 }
 .forbidden {
-  grid-column: 1/5;
+  grid-column: 1/6;
   grid-row: 9/17;
   background: #2d2a39;
 }

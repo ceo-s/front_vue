@@ -8,20 +8,17 @@
       ></product-select>
       <!-- </div> -->
     </pop-up>
-    <default-button style="margin-top: 10px" @click="search = true"
-      >Add:</default-button
+    <default-button :size="0.8" style="margin-top: 10px" @click="search = true"
+      >Добавить</default-button
     >
   </div>
 </template>
 
 <script>
-// entities
-import SelectedProducts from "@/components/entities/Diet/ui/SelectedProducts.vue";
 import ProductSelect from "@/components/entities/Diet/ui/ProductSelect.vue";
 export default {
   components: {
     ProductSelect,
-    SelectedProducts,
   },
   props: {
     products: { Array },
@@ -54,7 +51,7 @@ export default {
 }
 .select {
   width: 300px;
-  height: 300px;
-  overflow: hidden;
+  height: 400px;
+  // overflow: hidden;
 }
 </style>

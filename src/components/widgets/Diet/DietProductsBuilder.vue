@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1><slot></slot></h1>
+    <h3 style="font-size: 1.3em"><slot></slot></h3>
     <selected-products @update:products="updateProducts" :products="products" />
     <choose-products @update:products="updateProducts" :products="products" />
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>{{ product.name }}</h2>
+    <p style="font-size: 1.2em">{{ product.name }}</p>
     <div v-if="detail">
       <p>{{ product.calories }}</p>
       <p>{{ product.proteins }}</p>

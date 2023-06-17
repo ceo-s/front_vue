@@ -1,6 +1,5 @@
 <template>
   <div class="products-container">
-    <h1><slot></slot></h1>
     <div class="products">
       <diet-product
         @click="deleteProduct(product.id)"
