@@ -14,12 +14,12 @@
 <script>
 import MainMenu from "@/components/widgets/Landing/MainMenu.vue";
 export default {
-  beforeCreate() {
-    this.$store.dispatch("auth/initStorage");
+  async beforeCreate() {
+    await this.$store.dispatch("auth/initStorage");
     if (this.isAuthenticated) {
-      this.$store.dispatch("userInfo/fetchProfileInfo");
+      await this.$store.dispatch("userInfo/fetchProfileInfo");
     } else {
-      this.$router.push("/");
+      await this.$router.push("/");
     }
   },
 

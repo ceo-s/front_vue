@@ -3,7 +3,7 @@
     <button @click="popUpVisible = true" v-bind="$attrs">
       <slot></slot>
     </button>
-    <pop-up style="overflow-y: hidden" v-model:visible="popUpVisible">
+    <pop-up style="overflow: hidden" v-model:visible="popUpVisible">
       <div class="form">
         <div class="buttons">
           <button

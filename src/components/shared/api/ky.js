@@ -6,6 +6,14 @@ const api = ky.create({
   prefixUrl: "http://127.0.0.1:8000/api/",
   headers: { Authorization: localStorage.getItem("Authorization") },
   hooks: {
+    beforeRequest: [
+      (request) => {
+        request.headers.set(
+          "Authorization",
+          localStorage.getItem("Authorization")
+        );
+      },
+    ],
     beforeError: [
       (error) => {
         const { response } = error;

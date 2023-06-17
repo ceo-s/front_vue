@@ -46,6 +46,7 @@
   &::after {
     content: "";
     z-index: -1;
+    // z-index: 0;
     position: absolute;
     inset: calc(-1 * $size);
     background: linear-gradient($deg, $color1 42%, $color2 90%);

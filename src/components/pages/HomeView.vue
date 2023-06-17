@@ -433,7 +433,8 @@ h2 {
   aspect-ratio: 4/1;
   background: $color2;
   h2 {
-    // margin-left: 1em;
+    margin-left: 1em;
+    font-size: 1.6em;
     max-width: 60%;
   }
   div {

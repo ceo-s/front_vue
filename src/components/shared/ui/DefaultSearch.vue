@@ -58,7 +58,7 @@ export default {
   outline: none;
   border: none;
   border-radius: 4px;
-  background: #ffffff52;
+  background: $color4;
   /* margin: 10px; */
   /* background: #000; */
   padding-left: 6px;

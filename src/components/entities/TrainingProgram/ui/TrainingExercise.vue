@@ -1,7 +1,7 @@
 <template>
   <div class="exercise">
     <div class="exercise-main">
-      <h1>{{ index + 1 }}</h1>
+      <p style="font-size: 1.4em; font-weight: 600">{{ index + 1 }}</p>
       <default-search
         class="exercise-name"
         v-model="exercise.name"
@@ -20,12 +20,24 @@
     </div>
     <div v-if="detailView" class="exercise-hidden">
       <div class="exercise-info">
-        <default-input v-model="exercise.sets" :placeholder="'Sets:'" />
-        <default-input v-model="exercise.reps" :placeholder="'Reps:'" />
-        <default-input v-model="exercise.weight" :placeholder="'Weight:'" />
+        <input
+          class="program-input"
+          v-model="exercise.sets"
+          :placeholder="'Sets:'"
+        />
+        <input
+          class="program-input"
+          v-model="exercise.reps"
+          :placeholder="'Reps:'"
+        />
+        <input
+          class="program-input"
+          v-model="exercise.weight"
+          :placeholder="'Weight:'"
+        />
       </div>
-      <default-input
-        class="coment"
+      <input
+        class="program-input coment"
         v-model="exercise.comment"
         :placeholder="'Comment:'"
       />
@@ -71,11 +83,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// input {
-//   width: 100%;
-//   margin: 2px;
-//   border-radius: 5px;
-// }
+.program-input {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  background: $color4;
+  /* margin: 10px; */
+  /* background: #000; */
+  padding-left: 6px;
+  color: aliceblue;
+  font-weight: bold;
+}
+.program-input::placeholder {
+  width: 100%;
+  color: rgba(182, 182, 182, 0.8);
+  font-weight: 100;
+}
 .exercise {
   display: flex;
   flex-direction: column;

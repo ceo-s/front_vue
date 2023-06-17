@@ -1,21 +1,22 @@
 <template>
-  <div>
-    <transition name="back">
-      <div v-if="modelValue" @click="closeMenu" class="background"></div>
-    </transition>
-    <transition name="aside">
-      <aside v-if="modelValue">
-        <menu>
-          <slot> </slot>
-        </menu>
-      </aside>
-    </transition>
-  </div>
+  <!-- <div> -->
+  <transition name="back">
+    <div v-if="modelValue" @click="closeMenu" class="background"></div>
+  </transition>
+  <transition name="aside">
+    <aside v-bind="$attrs" v-if="modelValue">
+      <menu>
+        <slot> </slot>
+      </menu>
+    </aside>
+  </transition>
+  <!-- </div> -->
 </template>
 
 <script>
 export default {
-  name: "new-aside-menu",
+  name: "aside-menu",
+  inheritAttrs: false,
   props: {
     modelValue: { Boolean },
   },
@@ -29,7 +30,9 @@ export default {
 
 <style lang="scss" scoped>
 aside {
-  background: #222;
+  display: flex;
+  flex-direction: column;
+  background: $color1;
   height: 100vh;
   width: 40%;
   min-width: 280px;
@@ -49,8 +52,9 @@ aside {
   width: 100%;
   height: 100%;
   position: fixed;
-  background: #444444a8;
+  background: $color3;
   z-index: 10;
+  opacity: 0.7;
 }
 .back-leave-to,
 .back-enter-from {
@@ -58,7 +62,7 @@ aside {
 }
 .back-enter-active,
 .back-leave-active {
-  transition: 400ms;
+  transition: 200ms;
 }
 .aside-leave-to,
 .aside-enter-from {
@@ -67,6 +71,6 @@ aside {
 }
 .aside-enter-active,
 .aside-leave-active {
-  transition: 700ms;
+  transition: 400ms;
 }
 </style>

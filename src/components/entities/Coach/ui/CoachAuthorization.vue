@@ -2,6 +2,7 @@
   <form @submit.prevent="submitForm" class="auth-container" action="">
     <h1>Login</h1>
     <input
+      autofocus
       id="username"
       v-model="username"
       type="text"
@@ -17,7 +18,7 @@
     />
     <div class="blur pink"></div>
     <div class="blur blue"></div>
-    <default-button @click="submitForm">Submit</default-button>
+    <default-button>Submit</default-button>
   </form>
 </template>
 
@@ -38,6 +39,7 @@ export default {
       const resp = await login(this.username, this.password);
 
       await this.$store.dispatch("auth/login", resp.auth_token);
+      await this.$store.dispatch("userInfo/fetchProfileInfo");
       await this.$router.push("/profile");
     },
   },

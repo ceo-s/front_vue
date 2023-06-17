@@ -4,7 +4,10 @@
       <h2>{{ program.name }}</h2>
       <p>{{ program.time_start }} - {{ program.time_finish }}</p>
       <h3>Общие рекоменндации по програме:</h3>
-      <textarea v-model="program.description"></textarea>
+      <textarea
+        class="recommendations"
+        v-model="program.description"
+      ></textarea>
     </div>
     <div class="builder">
       <div class="weeks">
@@ -115,8 +118,29 @@ export default {
 
 <style lang="scss" scoped>
 .builder {
-  background: #ffffff35;
+  // background: #ffffff35;
 }
+.recommendations {
+  border: 1px solid $color4;
+  background: none;
+  color: $font-color1;
+  padding: 1ch;
+  border-radius: 10px;
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 6px 0 $color4;
+  }
+  &::-webkit-resizer {
+    color: white;
+    background: url("@/assets/resize.png");
+    background-size: 100%;
+    margin-top: 50px;
+  }
+  &::-webkit-resizer:hover {
+    transform: rotate(30deg);
+  }
+}
+
 .weeks {
   position: relative;
   height: fit-content;

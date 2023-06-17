@@ -7,6 +7,12 @@
 <script>
 export default {
   name: "default-button",
+  props: {
+    size: {
+      type: Number,
+      default: () => 1,
+    },
+  },
 };
 </script>
 
@@ -22,10 +28,11 @@ export default {
   color: $color5;
   font-size: large;
   font-weight: 600;
+  scale: v-bind(size);
 }
 .default-button:hover {
   // box-shadow: 0 0 10px 1px #b3b5b8;
-  scale: 1.01;
+  scale: calc(1.02 * v-bind(size));
 }
 .default-button:active {
 }

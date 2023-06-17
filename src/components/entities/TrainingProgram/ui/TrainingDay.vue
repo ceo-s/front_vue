@@ -85,7 +85,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #2e223d;
+  background: $color3;
   width: 92%;
   max-width: 350px;
   height: fit-content;
@@ -103,7 +103,7 @@ export default {
   @include flex-centered;
   height: 50px;
   width: 100%;
-  background: #ffffff3d;
+  background: $color2;
   border-radius: 0 0 20px 20px;
 }
 .bin {

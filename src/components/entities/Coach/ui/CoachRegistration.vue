@@ -2,7 +2,7 @@
   <form @submit.prevent="submitForm" class="auth-container" action="">
     <h1>Регистрация</h1>
     <div class="input-container">
-      <input v-model="username" :placeholder="'Телеграм:'" />
+      <input autofocus v-model="username" :placeholder="'Телеграм:'" />
       <validation-hint :visible="usernameValid">
         <template v-slot:text>
           {{ usernameValid }}
@@ -42,9 +42,7 @@
         </template>
       </validation-hint>
     </div>
-    <default-button class="submit-button" @click="submitForm"
-      >Submit</default-button
-    >
+    <default-button class="submit-button">Submit</default-button>
     <div class="blur pink"></div>
     <div class="blur blue"></div>
   </form>
@@ -74,9 +72,10 @@ export default {
         this.password
       );
 
-      // const resp = await login(this.username, this.password);
-      // await this.$store.dispatch("auth/login", resp.auth_token);
-      // await this.$router.push("/profile");
+      const resp = await login(data.username, this.password);
+      await this.$store.dispatch("auth/login", resp.auth_token);
+      await this.$store.dispatch("userInfo/fetchProfileInfo");
+      await this.$router.push("/profile");
     },
     serializeUsername() {
       let username = this.username;
