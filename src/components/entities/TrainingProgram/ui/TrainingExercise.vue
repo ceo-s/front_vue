@@ -2,21 +2,29 @@
   <div class="exercise">
     <div class="exercise-main">
       <p style="font-size: 1.4em; font-weight: 600">{{ index + 1 }}</p>
-      <default-search
-        class="exercise-name"
-        v-model="exercise.name"
-        :placeholder="'Упражнение:'"
-        :itemsApiLink="'exercises'"
-        :searchParams="['name__icontains']"
-        @update:searchResults="(results) => (hints = results)"
-      />
+      <div class="name-container">
+        <default-search
+          class="exercise-name"
+          v-model="exercise.name"
+          :placeholder="'Упражнение:'"
+          :itemsApiLink="'exercises'"
+          :searchParams="['name__icontains']"
+          @update:searchResults="initHints"
+          @focusout="closeHints"
+        />
+      </div>
       <!-- <h1  style="cursor: pointer; background: #fff">+</h1> -->
       <arrow-icon
         @click="toggleDetail"
+        :color="'#83808c'"
         :direction="detailView ? 'top' : 'bottom'"
         :size="0.5"
       />
-      <search-hints @update:hint="autocompleteExercise" :hints="hints" />
+      <search-hints
+        v-model:visible="hintsVisible"
+        @update:hint="autocompleteExercise"
+        :hints="hints"
+      />
     </div>
     <div v-if="detailView" class="exercise-hidden">
       <div class="exercise-info">
@@ -59,9 +67,19 @@ export default {
     return {
       detailView: false,
       hints: [],
+      hintsVisible: false,
     };
   },
   methods: {
+    initHints(results) {
+      this.hints = results;
+      this.hintsVisible = true;
+    },
+    closeHints() {
+      setTimeout(() => {
+        this.hintsVisible = false;
+      }, 200);
+    },
     toggleDetail() {
       this.detailView = !this.detailView;
     },
@@ -91,7 +109,7 @@ export default {
   height: 100%;
   outline: none;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.3em;
   background: $color4;
   /* margin: 10px; */
   /* background: #000; */
@@ -122,10 +140,6 @@ export default {
 .exercise-hidden {
   display: flex;
   flex-direction: column;
-  // width: 260px;
-  // max-width: 90%;
-  // width: 90%;
-  // overflow: hidden;
   gap: 4px;
   margin-bottom: 6px;
 }
@@ -136,9 +150,14 @@ export default {
   gap: 4px;
 }
 .exercise-name {
-  // width: 90%;
   flex-grow: 1;
   height: 30px;
+}
+.name-container {
+  flex-grow: 1;
+  background: $color4;
+  margin: 0.2em;
+  border-radius: 0.3em;
 }
 .coment {
   height: 24px;

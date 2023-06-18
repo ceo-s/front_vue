@@ -225,6 +225,9 @@ export default {
 .comment {
   grid-column: 12/17;
   grid-row: 1/8;
+  textarea {
+    resize: vertical;
+  }
 }
 TODO вынести кнопку в UI при рефакторинге в FSD .add-button {
   display: flex;

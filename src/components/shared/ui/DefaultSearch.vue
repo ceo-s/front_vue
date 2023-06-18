@@ -5,6 +5,7 @@
       :placeholder="placeholder"
       :value="modelValue"
       @input="performSearch"
+      @focusout="$emit('focusout')"
       type="text"
     />
   </div>

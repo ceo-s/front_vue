@@ -1,10 +1,10 @@
 <template>
   <div>
-    <default-button @click="this.visible = true"> Add client: </default-button>
+    <default-button @click="this.visible = true">
+      Добавить клиента:
+    </default-button>
     <pop-up v-model:visible="visible">
-      <client-creation-form
-        @update:client="(client) => $emit('update:client', client)"
-      />
+      <client-creation-form @update:client="updateClient" />
     </pop-up>
   </div>
 </template>
@@ -21,7 +21,10 @@ export default {
     };
   },
   methods: {
-    openClientAdd() {},
+    updateClient(client) {
+      this.visible = false;
+      this.$emit("update:client", client);
+    },
   },
 };
 </script>

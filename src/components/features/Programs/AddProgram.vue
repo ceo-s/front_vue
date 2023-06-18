@@ -1,6 +1,6 @@
 <template>
   <div class="add-program">
-    <default-button @click="visible = true">Add Program</default-button>
+    <default-button @click="visible = true">Новая программа</default-button>
     <pop-up style="overflow: visible" v-model:visible="visible">
       <create-program
         @update:program="$emit('update:program', $event), (visible = false)"
