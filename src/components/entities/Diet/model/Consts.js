@@ -1,7 +1,7 @@
-export const dayReference = (dietProgramId) => {
+export const dayReference = (name, dietProgramId) => {
   return {
     meals: [],
-    name: "Somename",
+    name,
     diet_program: dietProgramId,
   };
 };

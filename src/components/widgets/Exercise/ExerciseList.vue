@@ -65,7 +65,6 @@ export default {
       this.exercises = await listExercises();
     },
     openDetail(id) {
-      console.log(id);
       this.detailId = id;
     },
   },

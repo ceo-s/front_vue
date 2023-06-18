@@ -1,6 +1,6 @@
 <template>
   <div>
-    <plus-icon @click="this.visible = true" :size="0.8" />
+    <plus-icon :color="'#bbb6c8'" @click="this.visible = true" :size="0.8" />
     <pop-up v-model:visible="visible">
       <ProductAmountSelect @update:product="addProduct" />
     </pop-up>
@@ -13,6 +13,9 @@ export default {
   components: {
     ProductAmountSelect,
   },
+  mounted() {
+    console.log("mounted addproduct");
+  },
   data() {
     return {
       visible: false,
@@ -21,6 +24,7 @@ export default {
   methods: {
     addProduct(product) {
       this.$emit("update:product", product);
+      this.visible = false;
     },
   },
 };

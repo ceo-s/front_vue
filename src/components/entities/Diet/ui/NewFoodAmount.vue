@@ -3,12 +3,12 @@
     <h4>{{ foodAmount.product.name }}</h4>
     -
     <input
-      class="num-input"
+      class="num-input ghost"
       :style="{
-        width: String(foodAmount.grams).length + (updating ? 3 : 0) + 'ch',
+        width: String(foodAmount.grams).length + 1 + 'ch',
       }"
-      :disabled="!updating"
       v-model="foodAmount.grams"
+      placeholder="100"
       type="number"
       min="0"
       max="10000"
@@ -36,5 +36,9 @@ export default {
   display: flex;
   margin-left: 15px;
   margin-top: 4px;
+}
+.num-input {
+  font-size: large;
+  // padding: 0.2em;
 }
 </style>

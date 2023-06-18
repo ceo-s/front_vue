@@ -1,7 +1,7 @@
 <template>
   <button class="button">
+    <!-- :style="{ rotate: directionDegree }" -->
     <svg
-      :style="{ rotate: directionDegree }"
       class="arrow"
       version="1.1"
       id="Capa_1"
@@ -68,5 +68,7 @@ $size-index: v-bind(size);
   width: calc(50px * $size-index);
   height: fit-content;
   fill: v-bind(color);
+  rotate: v-bind(directionDegree);
+  transition: 200ms;
 }
 </style>

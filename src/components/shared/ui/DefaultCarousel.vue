@@ -1,12 +1,16 @@
 <template>
   <div class="carousel">
     <arrow-icon
+      v-if="itemsLength > 1"
+      :color="'#bbb6c8'"
       @click="previousItem"
       :size="arrowSize"
       :direction="arrowDirection.previous"
     />
     <slot></slot>
     <arrow-icon
+      v-if="itemsLength > 1"
+      :color="'#bbb6c8'"
       @click="nextItem"
       :size="arrowSize"
       :direction="arrowDirection.next"

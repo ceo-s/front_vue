@@ -10,7 +10,7 @@
         <h1>{{ programInfo.name }}</h1>
         <h2>{{ client.name }}</h2>
         <h3>{{ programInfo.date_start }} - {{ programInfo.date_finish }}</h3>
-        <input
+        <!-- <input
           :value="dateBinding(programInfo.date_start)"
           type="date"
           name=""
@@ -21,7 +21,7 @@
           type="date"
           name=""
           id=""
-        />
+        /> -->
       </div>
       <div class="block comment">
         <h2>Описание:</h2>
@@ -37,14 +37,14 @@
         class="block forbidden products"
         >Запрещённые продукты</diet-products-builder
       >
-      <day-reference-builder :daysRef="daysRef" class="block days" />
+      <day-reference-builder v-model:daysRef="daysRef" class="block days" />
       <nutrients-builder
         v-model:schedule="schedule"
         :nutrientsList="nutrientsList"
         class="block nutrients"
       />
+      <default-button @click="saveProgram">SAVE</default-button>
     </div>
-    <default-button @click="saveProgram">SAVE</default-button>
   </div>
 </template>
 
@@ -153,7 +153,7 @@ export default {
   }
 }
 .block {
-  background: #222;
+  background: $color2;
   border-radius: 20px;
   padding: 15px;
   display: flex;
@@ -177,15 +177,16 @@ export default {
 //   }
 // }
 .info {
-  grid-column: 6/12;
+  grid-column: 5/12;
   grid-row: 1/5;
-  background: #1d1f2a;
+  // background: #1d1f2a;
 }
 .info > h3 {
   margin-top: auto;
   margin-bottom: auto;
 }
 .products {
+  grid-column: 1/5;
   width: 100%;
   height: 100%;
   @media (width < 550px) {
@@ -193,19 +194,14 @@ export default {
   }
 }
 .allowed {
-  grid-column: 1/6;
   grid-row: 1/9;
-  background: #2d2a39;
 }
 .forbidden {
-  grid-column: 1/6;
   grid-row: 9/17;
-  background: #2d2a39;
 }
 .days {
-  grid-column: 6/12;
+  grid-column: 5/12;
   grid-row: 5/17;
-  background: #2d2a39;
   width: 100%;
   @media (width < 550px) {
     height: 35em;
@@ -214,7 +210,6 @@ export default {
 .supplements {
   grid-column: 6/12;
   grid-row: 1/6;
-  background: #2d2a39;
   @media (width < 550px) {
     height: 35em;
   }
@@ -223,7 +218,6 @@ export default {
 .nutrients {
   grid-column: 12/17;
   grid-row: 8/17;
-  background: #2d2a39;
   @media (width < 550px) {
     height: 25em;
   }
@@ -231,7 +225,6 @@ export default {
 .comment {
   grid-column: 12/17;
   grid-row: 1/8;
-  background: #2d2a39;
 }
 TODO вынести кнопку в UI при рефакторинге в FSD .add-button {
   display: flex;

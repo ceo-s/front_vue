@@ -17,8 +17,6 @@ Directives.forEach((Directive) => {
   app.directive(Directive.name, Directive);
 });
 
-// console.log(router.options.routes)
-
 app
   .use(store)
   .use(router)

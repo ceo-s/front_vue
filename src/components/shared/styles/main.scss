@@ -79,12 +79,16 @@ input.default:focus::placeholder {
 }
 input.ghost {
   @include drop-default;
-  text-align: center;
+  border-radius: 0.4em;
+  // text-align: center;
   color: $font-color1;
 }
 input.ghost::placeholder {
   color: $font-color2;
   opacity: 0.5;
+}
+input.ghost:focus {
+  background: $color3;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -229,5 +233,10 @@ textarea.max {
   @media (width < 400px) {
     flex-direction: column;
     gap: 0.6em;
+  }
+}
+.dragging {
+  * {
+    opacity: 0.6 !important;
   }
 }

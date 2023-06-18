@@ -92,7 +92,6 @@ export default {
         );
       } else {
         week = trainingWeek(this.program.id, this.program.time_start);
-        console.log(week);
       }
       this.program.weeks.push(week);
       this.program.time_finish = week.at(-1).date;

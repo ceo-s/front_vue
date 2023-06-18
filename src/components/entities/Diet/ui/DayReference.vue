@@ -32,6 +32,7 @@ export default {
   flex-direction: column;
 }
 .meals {
+  width: 100%;
   overflow-y: scroll;
   // max-height: 100px;
   background: #fff;

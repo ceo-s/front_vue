@@ -22,7 +22,7 @@
         "semi": "warn",
         "no-unused-vars": "warn",
         "vue/no-mutating-props": ["error", {
-            "shallowOnly": true
+            "shallowOnly": false
           }]
     }
 }

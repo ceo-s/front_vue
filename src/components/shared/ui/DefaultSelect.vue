@@ -52,7 +52,6 @@ const resetOption = () => {
 };
 
 const toggleSelect = () => {
-  console.log(dialog.value.getAttribute("open"));
   if (dialog.value.getAttribute("open") === "") {
     close();
   } else {
