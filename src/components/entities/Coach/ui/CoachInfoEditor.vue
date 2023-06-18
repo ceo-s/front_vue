@@ -19,11 +19,11 @@ const userInfo = ref();
 const store = useStore();
 const emits = defineEmits(["save"]);
 userInfo.value = structuredClone(store.state.userInfo.profileInfo);
-const saveChanges = (e) => {
-  updateProfileInfo(userInfo.value);
+const saveChanges = async (e) => {
+  await updateProfileInfo(userInfo.value);
   console.log(userInfo.value);
   console.log(e);
-  store.dispatch("userInfo/fetchProfileInfo");
+  await store.dispatch("userInfo/fetchProfileInfo");
   emits("save");
 };
 </script>

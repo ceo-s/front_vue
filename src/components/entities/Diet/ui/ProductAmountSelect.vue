@@ -1,5 +1,5 @@
 <template>
-  <div class="items">
+  <div class="items-container">
     <h3>Добавить продукт</h3>
     <default-search
       class="product-search"
@@ -8,13 +8,15 @@
       :searchParams="['name__icontains']"
       @update:searchResults="(results) => (searchedProducts = results)"
     />
-    <diet-product
-      class="item"
-      @click="addProduct(product)"
-      :key="product.id"
-      :product="product"
-      v-for="product in searchedProducts"
-    />
+    <div @wheel.stop class="items">
+      <diet-product
+        class="item"
+        @click="addProduct(product)"
+        :key="product.id"
+        :product="product"
+        v-for="product in searchedProducts"
+      />
+    </div>
   </div>
 </template>
 
@@ -45,12 +47,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.items {
+.items-container {
   padding: 0.4em;
   width: 300px;
   height: 360px;
-  overflow-y: scroll;
   background: linear-gradient(180deg, $color1, #ff498038 60%);
+  .items {
+    height: 70%;
+    overflow-y: scroll;
+  }
   h3 {
     margin: 0.6em;
     font-size: 1.2em;
