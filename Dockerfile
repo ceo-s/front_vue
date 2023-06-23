@@ -1,9 +1,10 @@
-FROM node:latest as build-stage
+# :latest was not working
+FROM node:16.15.1-alpine as build-stage
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
+COPY package.json ./
+RUN yarn install
 COPY . .
-RUN npm run build
+RUN yarn build
 
 
 FROM nginx:stable-alpine as production-stage

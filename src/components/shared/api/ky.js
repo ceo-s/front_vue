@@ -3,7 +3,8 @@ import store from "@/store";
 import router from "@/router";
 
 const api = ky.create({
-  prefixUrl: "http://127.0.0.1:8000/api/",
+  prefixUrl: `http://127.0.0.1:1337/api/`,
+
   headers: { Authorization: localStorage.getItem("Authorization") },
   hooks: {
     beforeRequest: [
