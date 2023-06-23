@@ -4,6 +4,7 @@ WORKDIR /app
 COPY package.json ./
 RUN yarn install
 COPY . .
+ENV GENERATE_SOURCEMAP=false
 RUN yarn build
 
 
